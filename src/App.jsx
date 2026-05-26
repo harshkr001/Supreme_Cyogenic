@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-function App() {
-  return (
-    <>
-      <h1>Supreme cryogenic</h1>
-      <p>Frontend project on mac</p>
-    </>
-    
-  );
-=======
 function App(){
     return(
         <>
@@ -186,6 +176,5 @@ function App(){
         </>
     );
 
->>>>>>> b40a324edc9bb297e0674e9cb9535f2a80af6b31
 }
 export default App;
