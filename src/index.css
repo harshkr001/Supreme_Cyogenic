@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -109,3 +110,106 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+=======
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #f7f9fc;
+  color: #0B2447;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nav links hover animation */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: #00BFFF;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.nav-link:hover {
+  color: #00BFFF !important;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* CTA button hover transition */
+.cta-button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 191, 255, 0.4) !important;
+  background-color: #009ecc !important;
+}
+
+.cta-button:active {
+  transform: translateY(-1px);
+}
+
+
+
+/* Watermark Style */
+.hero-watermark {
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 500px;
+  opacity: 0.4; /* watermark look, increased visibility */
+  pointer-events: none;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* Responsiveness */
+@media (max-width: 968px) {
+  .hero-section {
+    padding: 60px 20px !important;
+    text-align: center !important;
+  }
+  .hero-section > div {
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+  .hero-watermark {
+    right: 50%;
+    top: 50%;
+    transform: translate(50%, -50%);
+    width: 90%;
+    max-width: 450px;
+    height: auto;
+    opacity: 0.25; /* increased visibility behind centered text on mobile */
+  }
+}
+
+
+>>>>>>> b40a324edc9bb297e0674e9cb9535f2a80af6b31
