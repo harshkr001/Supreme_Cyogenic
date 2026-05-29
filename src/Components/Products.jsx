@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Products(){
     return(
         <section
@@ -39,6 +41,13 @@ function Products(){
             flexWrap:"wrap"
             }}
             >
+            <Link
+            to="/dry-ice/blocks"
+            style={{
+            textDecoration:"none",
+            color:"white"
+            }}
+            >
             
             <div className="product-card">
             
@@ -46,7 +55,7 @@ function Products(){
             fontSize:"52px",
             marginBottom:"20px"
             }}>
-            ❄
+            ❄️
             </div>
             
             <h3 style={{
@@ -60,11 +69,20 @@ function Products(){
             color:"#C8D6E5",
             lineHeight:"1.8"
             }}>
-            Industrial cooling, transportation and temperature controlled logistics solutions.
+            Industrial cooling...
             </p>
             
             </div>
             
+            </Link>
+
+            <Link
+            to="/dry-ice/pellets"
+            style={{
+            textDecoration:"none",
+            color:"white"
+            }}
+            >
             <div className="product-card">
             
             <div style={{
@@ -89,6 +107,15 @@ function Products(){
             </p>
             
             </div>
+            </Link>
+
+            <Link
+            to="/co2"
+            style={{
+            textDecoration:"none",
+            color:"inherit"
+            }}
+            >
             
             <div className="product-card">
             
@@ -114,7 +141,7 @@ function Products(){
             </p>
             
             </div>
-            
+            </Link>
             </div>
             
         </section>

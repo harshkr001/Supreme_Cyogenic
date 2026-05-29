@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 function Nav(){
+    const [showDropdown, setShowDropdown] = useState(false);
+    let timeout;
 
     
     return(
@@ -44,11 +46,52 @@ function Nav(){
     
     
      <nav style={{ display: "flex", gap: "30px", alignItems: "center" }}>
-         <Link to="/dry-ice" style={{
-             color:"#0B2447", textDecoration: "none", fontSize:"18px", fontWeight: "500"
-         }}>
-             Dry Ice
+         
+         <div
+         style={{
+         position:"relative"
+         }}
+
+         onMouseEnter={()=>{
+            clearTimeout(timeout);
+            setShowDropdown(true);
+         }}
+
+         onMouseLeave={()=>{
+            timeout = setTimeout(()=>{
+                setShowDropdown(false);
+            },1500);
+         }}
+         >
+         
+         <span
+         style={{
+         color:"#0B2447",
+         fontSize:"18px",
+         fontWeight:"500",
+         cursor:"pointer"
+         }}
+         >
+         Dry Ice
+         </span>
+         {showDropdown && (
+         
+         <div
+         className="dropdown-menu"
+         >
+         
+         <Link to="/dry-ice/blocks">
+         Dry Ice Blocks
          </Link>
+         
+         <Link to="/dry-ice/pellets">
+         Dry Ice Pellets
+         </Link>
+         
+         </div>
+         )}
+         
+         </div>
          <Link to="/co2" style={{
              color:"#0B2447", textDecoration: "none", fontSize:"18px", fontWeight: "500"
          }}>

@@ -36,30 +36,59 @@ function HeroSection(){
         }}>
         For Every Need
         </h2>
-        <p style={{
+        <p className="hero-text"
+         style={{
             fontSize:"24px",
             lineHeight:"1.8",
             marginBottom:"30px",
             opacity: 0.9
-        }}>
-            Supreme Cryogenic delivers high-quality dry ice products
-            with reliability and exceptional service since 2022.
+         }}
+        >
+            Supreme Cryogenic delivers high-quality dry ice products with reliability and exceptional service since 2022.
+            
         </p>
-        <a href="#products">
-        <button className="cta-button" style={{
-            padding:"18px 35px",
-            background:"#00BFFF",
-            color:"white",
-            border:"none",
-            borderRadius:"10px",
-            fontSize:"20px",
-            fontWeight:"bold",
-            cursor:"pointer",
-            boxShadow:"0 10px 25px rgba(0,229,255,0.2)"
+        
+        <div style={{
+        display:"flex",
+        gap:"20px",
+        marginTop:"30px",
+        alignItems:"center"
+      }}>
+
+      <a href="#products">
+        <button style={{
+          padding:"18px 35px",
+          background:"#00BFFF",
+          color:"white",
+          border:"none",
+          borderRadius:"12px",
+          fontSize:"20px",
+          fontWeight:"bold",
+          cursor:"pointer",
+          boxShadow:"0 10px 25px rgba(0,229,255,0.2)"
         }}>
-        Explore our products →
+          Explore Products →
         </button>
-        </a>
+      </a>
+
+      <a href="/login">
+        <button style={{
+          padding:"18px 35px",
+          background:"white",
+          color:"black",
+          border:"2px solid #ddd",
+          borderRadius:"12px",
+          fontSize:"18px",
+          fontWeight:"bold",
+          cursor:"pointer"
+        }}>
+          Login / Sign Up
+        </button>
+      </a>
+
+      
+
+      </div>
         
         <div
         style={{
@@ -93,7 +122,11 @@ function HeroSection(){
            display:"flex",
            alignItems:"center",
            justifyContent:"center",
-           marginTop:"-120px"
+           width:"100%",
+           
+           margin:"0 auto",
+           marginTop:"-120px",
+           marginLeft:"220px",
          }}
          >
         <video
@@ -102,13 +135,15 @@ function HeroSection(){
           loop
           playsInline
           style={{
-            width: "700px",
-            height: "450px",
+            width: "1100px",
+            height: "620px",
+            
             objectFit: "cover",
             borderRadius: "24px",
             boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
-            animation: "float 5s ease-in-out infinite",
-            marginTop:"-60px"
+            
+            marginTop:"-180px",
+            marginBottom:"80px",
           }}
         > 
         <source src={heroVideo} type="video/mp4" />

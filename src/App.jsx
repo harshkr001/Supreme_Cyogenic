@@ -1,8 +1,12 @@
+import Login from "./Pages/Login";
 import DryIce from "./Pages/DryIce";
 import CO2 from "./Pages/CO2";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Home from "./Pages/Home";
+import Footer from "./Components/Footer";
+import DryIceBlocks from "./Pages/DryIceBlocks";
+import DryIcePellets from "./Pages/DryIcePellets";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -18,7 +22,13 @@ function App() {
 
         <Route path="/" element={<Home />} />
 
+        <Route path="/login" element={<Login />} />
+
         <Route path="/dry-ice" element={<DryIce />} />
+
+        <Route path="/dry-ice/blocks" element={<DryIceBlocks />} />
+
+        <Route path="/dry-ice/pellets" element={<DryIcePellets />} />
 
         <Route path="/co2" element={<CO2 />} />
 
@@ -27,6 +37,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
 
       </Routes>
+
+      <Footer />
 
     </BrowserRouter>
   );
