@@ -69,7 +69,8 @@ function Products(){
             color:"#C8D6E5",
             lineHeight:"1.8"
             }}>
-            Industrial cooling...
+            High-performance dry ice blocks for industrial cooling,
+             storage and transportation needs.
             </p>
             
             </div>
