@@ -80,11 +80,13 @@ function Nav(){
          className="dropdown-menu"
          >
          
-         <Link to="/dry-ice/blocks">
+         <Link to="/dry-ice/blocks" classsName="nav-link" 
+         
+         >
          Dry Ice Blocks
          </Link>
          
-         <Link to="/dry-ice/pellets">
+         <Link to="/dry-ice/pellets" className="nav-link" >
          Dry Ice Pellets
          </Link>
          
@@ -92,17 +94,17 @@ function Nav(){
          )}
          
          </div>
-         <Link to="/co2" style={{
+         <Link to="/co2" className="nav-link" style={{
              color:"#0B2447", textDecoration: "none", fontSize:"18px", fontWeight: "500"
          }}>
              CO2
          </Link>
-         <Link to="/about" style={{
+         <Link to="/about" className="nav-link" style={{
              color:"#0B2447", textDecoration: "none", fontSize:"18px", fontWeight: "500"
          }}>
              About us
          </Link>
-         <Link to="/contact" style={{
+         <Link to="/contact" className="nav-link" style={{
              color:"#0B2447", textDecoration: "none", fontSize:"18px", fontWeight: "500"
          }}>
              Contact us

@@ -109,7 +109,7 @@ function Footer() {
 
           <p>📞 +94 XX XXX XXXX</p>
 
-          <p>📍 Sri Lanka</p>
+          <p>📍 Noida, India</p>
 
         </div>
 

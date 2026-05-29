@@ -9,6 +9,7 @@ function HeroSection(){
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            gap: "180px",
             padding: "70px",
             position: "relative",
             overflow: "hidden"
@@ -16,9 +17,12 @@ function HeroSection(){
         >
         <div style={{
             color:"white",
-            maxWidth:"600px",
+            maxWidth:"450px",
             position: "relative",
-            zIndex: 2
+            zIndex: 2,
+            marginLeft:"40px",
+            marginRight:"100px"
+
         }}>
         <h1 style={{
             fontSize:"70px",
@@ -119,14 +123,14 @@ function HeroSection(){
         </div >
         <div className="hero-watermark"
          style={{
-           display:"flex",
-           alignItems:"center",
-           justifyContent:"center",
+           position:"absolute",
+           top:0,
+           right:0,
            width:"100%",
+           height:"100%",
+           zIndex: 1,
            
-           margin:"0 auto",
-           marginTop:"-120px",
-           marginLeft:"220px",
+           
          }}
          >
         <video
@@ -135,15 +139,15 @@ function HeroSection(){
           loop
           playsInline
           style={{
-            width: "1100px",
-            height: "620px",
+            maxWidth: "100%",
+            height: "100%",
             
             objectFit: "cover",
             borderRadius: "24px",
+            
             boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
             
-            marginTop:"-180px",
-            marginBottom:"80px",
+            opacity: 0.7,
           }}
         > 
         <source src={heroVideo} type="video/mp4" />

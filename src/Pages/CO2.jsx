@@ -124,7 +124,7 @@ function CO2() {
         ))}
       </div>
 
-      <Footer />
+      
     </div>
   )
 }

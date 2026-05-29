@@ -70,7 +70,7 @@ function Contact() {
             <h2 style={{ color: "#00e5ff" }}>📍 Address</h2>
             <p style={{ color: "#cbd5e1", marginTop: "10px" }}>
               Supreme Cryogenic Pvt Ltd,
-              Colombo, Sri Lanka
+              Noida, India
             </p>
           </div>
 
