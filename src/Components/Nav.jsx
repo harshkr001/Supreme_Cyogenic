@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-function Nav(){
+function Nav({ onAuthClick }){
     const [showDropdown, setShowDropdown] = useState(false);
     let timeout;
 
@@ -109,6 +109,25 @@ function Nav(){
          }}>
              Contact us
          </Link>
+         <button
+           type="button"
+           onClick={onAuthClick}
+           style={{
+             borderRadius: "999px",
+             border: "1px solid rgba(0, 174, 239, 0.35)",
+             background: "rgba(7, 17, 31, 0.96)",
+             color: "#D8F8FF",
+             fontSize: "16px",
+             fontWeight: "600",
+             padding: "10px 18px",
+             cursor: "pointer",
+             transition: "transform 0.2s ease, background 0.2s ease"
+           }}
+           onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-1px)"}
+           onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
+         >
+           Login / Sign Up
+         </button>
      </nav>
                 
     </header>

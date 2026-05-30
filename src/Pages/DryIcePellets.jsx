@@ -89,7 +89,7 @@ function DryIcePellets() {
               <input id={`qty-pellet-${index}`} type="number" min={1} defaultValue={1} style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #243644", background: "#07121a", color: "white" }} />
               {added[index] ? (
                 <button onClick={() => { window.location.href = "/cart"; }} style={{ flex:1, padding:"12px", background:"#00BFFF", border:"none", borderRadius:"10px", color:"white" }}>
-                  Go to Cart
+                  Proceed to Buy
                 </button>
               ) : (
                 <>
@@ -100,7 +100,6 @@ function DryIcePellets() {
                     addToCart({ id: `pellet-${index}`, title: item.title, price: item.price, image: item.image }, qty);
                     el.value = "1";
                     setAdded((p) => ({ ...p, [index]: true }));
-                    alert(`${qty} x ${item.title} added to cart`);
                   }}
                   style={{ flex:1, padding:"12px", background:"#00BFFF", border:"none", borderRadius:"10px", color:"white" }}>
                   Add to Cart

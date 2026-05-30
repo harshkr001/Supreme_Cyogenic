@@ -91,7 +91,7 @@ function CO2() {
               <input id={`qty-co2-${index}`} type="number" min={1} defaultValue={1} style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #1b2b37", background: "#07121a", color: "white" }} />
               {added[index] ? (
                 <button onClick={() => { window.location.href = "/cart"; }} style={{ flex: 1, padding: "14px", background: "#00e5ff", border: "none", borderRadius: "10px", fontWeight: "bold", cursor: "pointer" }}>
-                  Go to Cart
+                  Proceed to Buy
                 </button>
               ) : (
                 <button
@@ -101,7 +101,6 @@ function CO2() {
                     addToCart({ id: `co2-${index}`, title: product.title, price: product.price, image: product.image }, qty);
                     el.value = "1";
                     setAdded((p) => ({ ...p, [index]: true }));
-                    alert(`${qty} x ${product.title} added to cart`);
                   }}
                   style={{
                     flex: 1,

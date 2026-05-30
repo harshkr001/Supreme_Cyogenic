@@ -127,7 +127,7 @@ function DryIceBlocks() {
                     cursor:"pointer"
                   }}
                 >
-                  Go to Cart
+                  Proceed to Buy
                 </button>
               ) : (
                 <button
@@ -137,7 +137,6 @@ function DryIceBlocks() {
                     addToCart({ id: `block-${index}`, title: item.title, price: item.price, image: item.image }, qty);
                     el.value = "1";
                     setAdded((p) => ({ ...p, [index]: true }));
-                    alert(`${qty} x ${item.title} added to cart`);
                   }}
                   style={{
                     flex:1,
