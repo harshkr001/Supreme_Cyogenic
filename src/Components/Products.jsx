@@ -3,12 +3,12 @@ import { motion } from "framer-motion";
 
 const container = {
     hidden: {},
-    show: { transition: { staggerChildren: 0.12 } }
+    show: { transition: { staggerChildren: 0.15 } }
 };
 
 const card = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    hidden: { opacity: 0, x: (index) => index % 2 === 0 ? -80 : 80 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
 };
 
 function Products(){
@@ -61,7 +61,12 @@ function Products(){
             >
             {items.map((it, idx) => (
                 <Link key={it.title} to={it.to} style={{ textDecoration: "none", color: "inherit" }}>
-                    <motion.div className="product-card" variants={card} style={{
+                    <motion.div className="product-card" 
+                        variants={{
+                            hidden: { opacity: 0, x: idx % 2 === 0 ? -80 : 80 },
+                            show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                        }}
+                        style={{
                         flex: "1 1 260px",
                         minWidth: "260px",
                         background: "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",

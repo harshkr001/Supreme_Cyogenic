@@ -1,15 +1,9 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import heroVideo from "../assets/hero-video.mp4";
 
 function HeroSection(){
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [0, -140]);
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
     return(
      <section
-    ref={ref}
     className="hero-section"
     style={{
       background: "radial-gradient(circle at 70% 50%, #083c74 0%, #031c3a 45%, #000c1f 80%, #00050f 100%)",
@@ -23,15 +17,18 @@ function HeroSection(){
       overflow: "hidden"
     }}
     >
-    <motion.div style={{
+    <motion.div 
+      initial={{ x: -150, opacity: 0 }}
+      whileInView={{ x: 0, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.1 }}
+      style={{
       color:"white",
       maxWidth:"450px",
       position: "relative",
       zIndex: 2,
       marginLeft:"40px",
-      marginRight:"100px",
-      y,
-      opacity
+      marginRight:"100px"
     }}>
         <h1 style={{
             fontSize:"70px",
