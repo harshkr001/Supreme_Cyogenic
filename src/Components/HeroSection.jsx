@@ -125,10 +125,12 @@ function HeroSection(){
          style={{
            position:"absolute",
            top:0,
-           right:0,
-           width:"100%",
+           left: "50%",
+           marginLeft: "calc(-50vw)",
+           width: "100vw",
            height:"100%",
            zIndex: 1,
+           overflow: "hidden",
            
            
          }}
@@ -139,15 +141,17 @@ function HeroSection(){
           loop
           playsInline
           style={{
-            maxWidth: "100%",
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
             height: "100%",
-            
+            minWidth: "100vw",
             objectFit: "cover",
-            borderRadius: "24px",
-            
+            borderRadius: 0,
             boxShadow: "0 20px 50px rgba(0,0,0,0.35)",
-            
             opacity: 0.7,
+            pointerEvents: "none",
           }}
         > 
         <source src={heroVideo} type="video/mp4" />
