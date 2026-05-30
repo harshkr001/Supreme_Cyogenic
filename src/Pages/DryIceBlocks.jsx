@@ -1,4 +1,8 @@
+import { useState } from "react";
+import { addToCart } from "../lib/cart";
+
 function DryIceBlocks() {
+  const [added, setAdded] = useState({});
 
   const products = [
     {
@@ -100,28 +104,55 @@ function DryIceBlocks() {
               {item.desc}
             </p>
 
-            <div
-              style={{
-                display:"flex",
-                gap:"12px",
-                marginTop:"20px"
-              }}
-            >
+            <div style={{ display: "flex", gap: "12px", marginTop: "20px", alignItems: "center" }}>
+              <input
+                type="number"
+                min={1}
+                defaultValue={1}
+                id={`qty-block-${index}`}
+                style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #243644", background: "#07121a", color: "white" }}
+              />
 
-              <button
-                style={{
-                  flex:1,
-                  padding:"12px",
-                  background:"#00BFFF",
-                  border:"none",
-                  borderRadius:"10px",
-                  color:"white",
-                  fontWeight:"bold",
-                  cursor:"pointer"
-                }}
-              >
-                Add to Cart
-              </button>
+              {added[index] ? (
+                <button
+                  onClick={() => { window.location.href = "/cart"; }}
+                  style={{
+                    flex:1,
+                    padding:"12px",
+                    background:"#00BFFF",
+                    border:"none",
+                    borderRadius:"10px",
+                    color:"white",
+                    fontWeight:"bold",
+                    cursor:"pointer"
+                  }}
+                >
+                  Go to Cart
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    const el = document.getElementById(`qty-block-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    addToCart({ id: `block-${index}`, title: item.title, price: item.price, image: item.image }, qty);
+                    el.value = "1";
+                    setAdded((p) => ({ ...p, [index]: true }));
+                    alert(`${qty} x ${item.title} added to cart`);
+                  }}
+                  style={{
+                    flex:1,
+                    padding:"12px",
+                    background:"#00BFFF",
+                    border:"none",
+                    borderRadius:"10px",
+                    color:"white",
+                    fontWeight:"bold",
+                    cursor:"pointer"
+                  }}
+                >
+                  Add to Cart
+                </button>
+              )}
 
               <button
                 style={{
@@ -133,6 +164,12 @@ function DryIceBlocks() {
                   color:"#00BFFF",
                   fontWeight:"bold",
                   cursor:"pointer"
+                }}
+                onClick={() => {
+                  const el = document.getElementById(`qty-block-${index}`);
+                  const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                  addToCart({ id: `block-${index}`, title: item.title, price: item.price, image: item.image }, qty);
+                  window.location.href = "/login";
                 }}
               >
                 Buy Now

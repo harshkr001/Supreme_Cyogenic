@@ -1,4 +1,8 @@
+import { addToCart } from "../lib/cart";
+import { useState } from "react";
+
 function DryIcePellets() {
+  const [added, setAdded] = useState({});
   const products = [
     {
       image: "/pellet1.jpeg",
@@ -81,40 +85,36 @@ function DryIcePellets() {
 
             <p>{item.desc}</p>
             
-            <div
-            style={{
-            display:"flex",
-            gap:"10px",
-            marginTop:"20px"
-            }}
-            >
-            
-            <button
-            style={{
-            flex:1,
-            padding:"12px",
-            background:"#00BFFF",
-            border:"none",
-            borderRadius:"10px",
-            color:"white"
-            }}
-            >
-            Add to Cart
-            </button>
-            
-            <button
-            style={{
-            flex:1,
-            padding:"12px",
-            background:"transparent",
-            border:"2px solid #00BFFF",
-            borderRadius:"10px",
-            color:"#00BFFF"
-            }}
-            >
-            Buy Now
-            </button>
-            
+            <div style={{ display: "flex", gap: "10px", marginTop: "20px", alignItems: "center" }}>
+              <input id={`qty-pellet-${index}`} type="number" min={1} defaultValue={1} style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #243644", background: "#07121a", color: "white" }} />
+              {added[index] ? (
+                <button onClick={() => { window.location.href = "/cart"; }} style={{ flex:1, padding:"12px", background:"#00BFFF", border:"none", borderRadius:"10px", color:"white" }}>
+                  Go to Cart
+                </button>
+              ) : (
+                <>
+                <button
+                  onClick={() => {
+                    const el = document.getElementById(`qty-pellet-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    addToCart({ id: `pellet-${index}`, title: item.title, price: item.price, image: item.image }, qty);
+                    el.value = "1";
+                    setAdded((p) => ({ ...p, [index]: true }));
+                    alert(`${qty} x ${item.title} added to cart`);
+                  }}
+                  style={{ flex:1, padding:"12px", background:"#00BFFF", border:"none", borderRadius:"10px", color:"white" }}>
+                  Add to Cart
+                </button>
+                <button style={{ flex:1, padding:"12px", background:"transparent", border:"2px solid #00BFFF", borderRadius:"10px", color:"#00BFFF" }} onClick={() => {
+                    const el = document.getElementById(`qty-pellet-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    addToCart({ id: `pellet-${index}`, title: item.title, price: item.price, image: item.image }, qty);
+                    window.location.href = "/login";
+                  }}>
+                  Buy Now
+                </button>
+                </>
+              )}
             </div>
           </div>
         ))}

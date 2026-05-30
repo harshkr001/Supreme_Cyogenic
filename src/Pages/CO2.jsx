@@ -1,4 +1,6 @@
 import Footer from "../Components/Footer"
+import { addToCart } from "../lib/cart";
+import { useState } from "react";
 
 const products = [
   {
@@ -24,6 +26,7 @@ const products = [
 ]
 
 function CO2() {
+  const [added, setAdded] = useState({});
   return (
     <div
       style={{
@@ -84,26 +87,35 @@ function CO2() {
               {product.desc}
             </p>
 
-            <div
-              style={{
-                display: "flex",
-                gap: "12px",
-                marginTop: "20px"
-              }}
-            >
-              <button
-                style={{
-                  flex: 1,
-                  padding: "14px",
-                  background: "#00e5ff",
-                  border: "none",
-                  borderRadius: "10px",
-                  fontWeight: "bold",
-                  cursor: "pointer"
-                }}
-              >
-                Add To Cart
-              </button>
+            <div style={{ display: "flex", gap: "12px", marginTop: "20px", alignItems: "center" }}>
+              <input id={`qty-co2-${index}`} type="number" min={1} defaultValue={1} style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #1b2b37", background: "#07121a", color: "white" }} />
+              {added[index] ? (
+                <button onClick={() => { window.location.href = "/cart"; }} style={{ flex: 1, padding: "14px", background: "#00e5ff", border: "none", borderRadius: "10px", fontWeight: "bold", cursor: "pointer" }}>
+                  Go to Cart
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    const el = document.getElementById(`qty-co2-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    addToCart({ id: `co2-${index}`, title: product.title, price: product.price, image: product.image }, qty);
+                    el.value = "1";
+                    setAdded((p) => ({ ...p, [index]: true }));
+                    alert(`${qty} x ${product.title} added to cart`);
+                  }}
+                  style={{
+                    flex: 1,
+                    padding: "14px",
+                    background: "#00e5ff",
+                    border: "none",
+                    borderRadius: "10px",
+                    fontWeight: "bold",
+                    cursor: "pointer"
+                  }}
+                >
+                  Add To Cart
+                </button>
+              )}
 
               <button
                 style={{
@@ -115,6 +127,12 @@ function CO2() {
                   borderRadius: "10px",
                   fontWeight: "bold",
                   cursor: "pointer"
+                }}
+                onClick={() => {
+                  const el = document.getElementById(`qty-co2-${index}`);
+                  const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                  addToCart({ id: `co2-${index}`, title: product.title, price: product.price, image: product.image }, qty);
+                  window.location.href = "/login";
                 }}
               >
                 Buy Now
