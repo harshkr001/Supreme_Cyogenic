@@ -23,11 +23,17 @@ const products = [
 ];
 
 function Nav({ onAuthClick }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [productsMenuOpen, setProductsMenuOpen] = useState(false);
+  const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const dropdownRef = useRef(null);
-  const triggerRef = useRef(null);
-  const hideTimeout = useRef(null);
+  
+  const productsDropdownRef = useRef(null);
+  const productsTriggerRef = useRef(null);
+  const productsHideTimeout = useRef(null);
+  
+  const aboutDropdownRef = useRef(null);
+  const aboutTriggerRef = useRef(null);
+  const aboutHideTimeout = useRef(null);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 880px)");
@@ -41,12 +47,21 @@ function Nav({ onAuthClick }) {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target) &&
-        triggerRef.current &&
-        !triggerRef.current.contains(event.target)
+        productsDropdownRef.current &&
+        !productsDropdownRef.current.contains(event.target) &&
+        productsTriggerRef.current &&
+        !productsTriggerRef.current.contains(event.target)
       ) {
-        setMenuOpen(false);
+        setProductsMenuOpen(false);
+      }
+      
+      if (
+        aboutDropdownRef.current &&
+        !aboutDropdownRef.current.contains(event.target) &&
+        aboutTriggerRef.current &&
+        !aboutTriggerRef.current.contains(event.target)
+      ) {
+        setAboutMenuOpen(false);
       }
     };
 
@@ -54,22 +69,41 @@ function Nav({ onAuthClick }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const openDropdown = () => {
+  const openProductsDropdown = () => {
     if (!isMobile) {
-      window.clearTimeout(hideTimeout.current);
-      setMenuOpen(true);
+      window.clearTimeout(productsHideTimeout.current);
+      setProductsMenuOpen(true);
     }
   };
 
-  const closeDropdown = () => {
+  const closeProductsDropdown = () => {
     if (!isMobile) {
-      hideTimeout.current = window.setTimeout(() => setMenuOpen(false), 150);
+      productsHideTimeout.current = window.setTimeout(() => setProductsMenuOpen(false), 150);
     }
   };
 
-  const toggleDropdown = () => {
+  const toggleProductsDropdown = () => {
     if (isMobile) {
-      setMenuOpen((current) => !current);
+      setProductsMenuOpen((current) => !current);
+    }
+  };
+
+  const openAboutDropdown = () => {
+    if (!isMobile) {
+      window.clearTimeout(aboutHideTimeout.current);
+      setAboutMenuOpen(true);
+    }
+  };
+
+  const closeAboutDropdown = () => {
+    if (!isMobile) {
+      aboutHideTimeout.current = window.setTimeout(() => setAboutMenuOpen(false), 150);
+    }
+  };
+
+  const toggleAboutDropdown = () => {
+    if (isMobile) {
+      setAboutMenuOpen((current) => !current);
     }
   };
 
@@ -116,17 +150,17 @@ function Nav({ onAuthClick }) {
 
       <nav style={{ display: "flex", gap: "30px", alignItems: "center" }}>
         <div
-          ref={dropdownRef}
+          ref={productsDropdownRef}
           style={{ position: "relative" }}
-          onMouseEnter={openDropdown}
-          onMouseLeave={closeDropdown}
+          onMouseEnter={openProductsDropdown}
+          onMouseLeave={closeProductsDropdown}
         >
           <button
-            ref={triggerRef}
+            ref={productsTriggerRef}
             type="button"
-            onClick={toggleDropdown}
+            onClick={toggleProductsDropdown}
             aria-haspopup="menu"
-            aria-expanded={menuOpen}
+            aria-expanded={productsMenuOpen}
             style={{
               color: "#0B2447",
               fontSize: "18px",
@@ -145,7 +179,7 @@ function Nav({ onAuthClick }) {
               style={{
                 display: "inline-block",
                 transition: "transform 0.2s ease",
-                transform: menuOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transform: productsMenuOpen ? "rotate(180deg)" : "rotate(0deg)",
               }}
             >
               ▼
@@ -163,12 +197,12 @@ function Nav({ onAuthClick }) {
               background: "rgba(255,255,255,0.98)",
               boxShadow: "0 24px 60px rgba(11, 36, 71, 0.16)",
               border: "1px solid rgba(11, 36, 71, 0.08)",
-              opacity: menuOpen ? 1 : 0,
-              visibility: menuOpen ? "visible" : "hidden",
-              transform: menuOpen ? "translateY(0)" : "translateY(-10px)",
+              opacity: productsMenuOpen ? 1 : 0,
+              visibility: productsMenuOpen ? "visible" : "hidden",
+              transform: productsMenuOpen ? "translateY(0)" : "translateY(-10px)",
               transition:
                 "opacity 220ms ease, transform 220ms ease, visibility 220ms ease",
-              pointerEvents: menuOpen ? "auto" : "none",
+              pointerEvents: productsMenuOpen ? "auto" : "none",
               zIndex: 1001,
             }}
             role="menu"
@@ -216,7 +250,7 @@ function Nav({ onAuthClick }) {
                   <Link
                     to={product.path}
                     className="nav-link"
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => setProductsMenuOpen(false)}
                     style={{
                       display: "inline-flex",
                       alignItems: "center",
@@ -239,18 +273,103 @@ function Nav({ onAuthClick }) {
           </div>
         </div>
 
-        <Link
-          to="/about"
-          className="nav-link"
-          style={{
-            color: "#0B2447",
-            textDecoration: "none",
-            fontSize: "18px",
-            fontWeight: "500",
-          }}
+        <div
+          ref={aboutDropdownRef}
+          style={{ position: "relative" }}
+          onMouseEnter={openAboutDropdown}
+          onMouseLeave={closeAboutDropdown}
         >
-          About us
-        </Link>
+          <button
+            ref={aboutTriggerRef}
+            type="button"
+            onClick={toggleAboutDropdown}
+            aria-haspopup="menu"
+            aria-expanded={aboutMenuOpen}
+            style={{
+              color: "#0B2447",
+              fontSize: "18px",
+              fontWeight: "500",
+              cursor: "pointer",
+              background: "transparent",
+              border: "none",
+              padding: 0,
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+            }}
+          >
+            About us
+            <span
+              style={{
+                display: "inline-block",
+                transition: "transform 0.2s ease",
+                transform: aboutMenuOpen ? "rotate(180deg)" : "rotate(0deg)",
+              }}
+            >
+              ▼
+            </span>
+          </button>
+
+          <div
+            style={{
+              position: "absolute",
+              right: 0,
+              top: "calc(100% + 12px)",
+              width: "min(420px, 100vw - 40px)",
+              padding: "24px",
+              borderRadius: "22px",
+              background: "rgba(255,255,255,0.98)",
+              boxShadow: "0 24px 60px rgba(11, 36, 71, 0.16)",
+              border: "1px solid rgba(11, 36, 71, 0.08)",
+              opacity: aboutMenuOpen ? 1 : 0,
+              visibility: aboutMenuOpen ? "visible" : "hidden",
+              transform: aboutMenuOpen ? "translateY(0)" : "translateY(-10px)",
+              transition:
+                "opacity 220ms ease, transform 220ms ease, visibility 220ms ease",
+              pointerEvents: aboutMenuOpen ? "auto" : "none",
+              zIndex: 1001,
+            }}
+            role="menu"
+          >
+            <article>
+              <h3 style={{ margin: "0 0 16px 0", fontSize: "18px", fontWeight: 700, color: "#0B2447" }}>
+                About Our Company
+              </h3>
+              <p
+                style={{
+                  margin: "0 0 24px 0",
+                  lineHeight: "1.8",
+                  color: "#334155",
+                  fontSize: "14px",
+                }}
+              >
+                We are a leading provider of Dry Ice and CO2 solutions, delivering high-quality products for industrial, commercial, and specialized applications. Our focus is on innovation, reliability, safety, and customer satisfaction.
+              </p>
+              <Link
+                to="/about"
+                onClick={() => setAboutMenuOpen(false)}
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: "999px",
+                  padding: "12px 20px",
+                  width: "fit-content",
+                  background: "#00AEEF",
+                  color: "#fff",
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  transition: "background 0.2s ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.background = "#0096d1")}
+                onMouseLeave={(e) => (e.currentTarget.style.background = "#00AEEF")}
+              >
+                Learn More About Us
+              </Link>
+            </article>
+          </div>
+        </div>
         <Link
           to="/contact"
           className="nav-link"
