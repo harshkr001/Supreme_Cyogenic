@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../Context/CartContext";
 
@@ -25,6 +25,7 @@ const products = [
 
 function Nav({ onAuthClick }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { getTotalItems } = useCart();
   const cartCount = getTotalItems();
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
@@ -128,13 +129,24 @@ function Nav({ onAuthClick }) {
         boxShadow: "0 4px 30px rgba(0,0,0,0.1)",
       }}
     >
-      <Link
-        to="/"
+      <button
+        type="button"
+        onClick={() => {
+          if (location.pathname === "/") {
+            window.location.reload();
+          } else {
+            navigate("/");
+          }
+        }}
         style={{
           display: "flex",
           alignItems: "center",
           gap: "12px",
           textDecoration: "none",
+          border: "none",
+          background: "transparent",
+          padding: 0,
+          cursor: "pointer",
         }}
       >
         <img
@@ -150,7 +162,7 @@ function Nav({ onAuthClick }) {
           <h1 style={{ margin: "0", color: "#0B2447", fontSize: "32px" }}>SUPREME</h1>
           <p style={{ margin: "0", color: "#00AEEF", letterSpacing: "6px" }}>CRYOGENIC</p>
         </div>
-      </Link>
+      </button>
 
       <nav style={{ display: "flex", gap: "30px", alignItems: "center" }}>
         <div
