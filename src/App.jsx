@@ -30,8 +30,10 @@ function App() {
         <Route path="/dry-ice" element={<DryIce />} />
 
         <Route path="/dry-ice/blocks" element={<DryIceBlocks />} />
+        <Route path="/dry-ice-blocks" element={<DryIceBlocks />} />
 
         <Route path="/dry-ice/pellets" element={<DryIcePellets />} />
+        <Route path="/dry-ice-pellets" element={<DryIcePellets />} />
 
         <Route path="/co2" element={<CO2 />} />
 
