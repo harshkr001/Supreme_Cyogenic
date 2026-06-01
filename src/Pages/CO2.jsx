@@ -28,17 +28,24 @@ const products = [
 
 function CO2() {
   const navigate = useNavigate();
-  const { setCheckout } = useCart();
-  const [added, setAdded] = useState({});
+  const { addToCart } = useCart();
+  const [notification, setNotification] = useState('');
 
-  const handleProceedToCheckout = (product, quantity) => {
-    const checkoutItems = [{ ...product, quantity }];
-    const price = parseFloat(product.price.split(" ")[1] || "0");
-    const subtotal = isNaN(price) ? 0 : price * quantity;
-    const total = subtotal * 1.18;
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(''), 3000);
+  };
 
-    setCheckout({ items: checkoutItems, total });
-    navigate("/checkout");
+  const handleAddToCart = (product, quantity) => {
+    addToCart(product, quantity);
+    showNotification(`${product.title} added to cart!`);
+    const inputEl = document.getElementById(`qty-co2-${products.findIndex(p => p.id === product.id)}`);
+    if (inputEl) inputEl.value = '1';
+  };
+
+  const handleBuyNow = (product, quantity) => {
+    addToCart(product, quantity);
+    navigate('/cart');
   };
 
   return (
@@ -50,6 +57,24 @@ function CO2() {
         color: "white"
       }}
     >
+
+      {notification && (
+        <div style={{
+          position: 'fixed',
+          top: '100px',
+          right: '20px',
+          background: '#00C864',
+          color: '#07111d',
+          padding: '12px 20px',
+          borderRadius: '8px',
+          fontWeight: '600',
+          zIndex: 1000,
+          animation: 'slideIn 0.3s ease',
+        }}>
+          {notification}
+        </div>
+      )}
+
       <h1
         style={{
           textAlign: "center",
@@ -109,52 +134,28 @@ function CO2() {
                 defaultValue={1} 
                 style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #1b2b37", background: "#07121a", color: "white" }} 
               />
-              {added[index] ? (
-                <button 
-                  onClick={() => {
-                    const el = document.getElementById(`qty-co2-${index}`);
-                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                    handleProceedToCheckout(product, qty);
-                  }}
-                  style={{ 
-                    flex: 1, 
-                    padding: "14px", 
-                    background: "#00e5ff", 
-                    border: "none", 
-                    borderRadius: "10px", 
-                    fontWeight: "bold", 
-                    cursor: "pointer",
-                    transition: "opacity 0.2s ease"
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  Proceed to Buy
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    const el = document.getElementById(`qty-co2-${index}`);
-                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                    el.value = "1";
-                    setAdded((p) => ({ ...p, [index]: true }));
-                  }}
-                  style={{
-                    flex: 1,
-                    padding: "14px",
-                    background: "#00e5ff",
-                    border: "none",
-                    borderRadius: "10px",
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                    transition: "opacity 0.2s ease"
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  Add To Cart
-                </button>
-              )}
+              
+              <button
+                onClick={() => {
+                  const el = document.getElementById(`qty-co2-${index}`);
+                  const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                  handleAddToCart(product, qty);
+                }}
+                style={{
+                  flex: 1,
+                  padding: "14px",
+                  background: "#00e5ff",
+                  border: "none",
+                  borderRadius: "10px",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  transition: "opacity 0.2s ease"
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                Add To Cart
+              </button>
 
               <button
                 style={{
@@ -177,7 +178,7 @@ function CO2() {
                 onClick={() => {
                   const el = document.getElementById(`qty-co2-${index}`);
                   const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                  handleProceedToCheckout(product, qty);
+                  handleBuyNow(product, qty);
                 }}
               >
                 Buy Now
@@ -187,8 +188,22 @@ function CO2() {
         ))}
       </div>
 
+      <style>{`
+        @keyframes slideIn {
+          from {
+            transform: translateX(400px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
+
     </div>
   );
 }
 
 export default CO2;
+

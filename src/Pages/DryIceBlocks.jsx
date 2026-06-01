@@ -4,8 +4,8 @@ import { useCart } from "../Context/CartContext";
 
 function DryIceBlocks() {
   const navigate = useNavigate();
-  const { setCheckout } = useCart();
-  const [added, setAdded] = useState({});
+  const { addToCart } = useCart();
+  const [notification, setNotification] = useState('');
 
   const products = [
     {
@@ -31,13 +31,21 @@ function DryIceBlocks() {
     }
   ];
 
-  const handleProceedToCheckout = (product, quantity) => {
-    const checkoutItems = [{ ...product, quantity }];
-    const subtotal = parseFloat(product.price.split(" ")[1] || "0") * quantity;
-    const total = subtotal * 1.18;
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(''), 3000);
+  };
 
-    setCheckout({ items: checkoutItems, total });
-    navigate("/checkout");
+  const handleAddToCart = (product, quantity) => {
+    addToCart(product, quantity);
+    showNotification(`${product.title} added to cart!`);
+    const inputEl = document.getElementById(`qty-block-${products.findIndex(p => p.id === product.id)}`);
+    if (inputEl) inputEl.value = '1';
+  };
+
+  const handleBuyNow = (product, quantity) => {
+    addToCart(product, quantity);
+    navigate('/cart');
   };
 
   return (
@@ -49,6 +57,23 @@ function DryIceBlocks() {
         color:"white"
       }}
     >
+
+      {notification && (
+        <div style={{
+          position: 'fixed',
+          top: '100px',
+          right: '20px',
+          background: '#00C864',
+          color: '#07111d',
+          padding: '12px 20px',
+          borderRadius: '8px',
+          fontWeight: '600',
+          zIndex: 1000,
+          animation: 'slideIn 0.3s ease',
+        }}>
+          {notification}
+        </div>
+      )}
 
       <h1
         style={{
@@ -126,54 +151,28 @@ function DryIceBlocks() {
                 style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #243644", background: "#07121a", color: "white" }}
               />
 
-              {added[index] ? (
-                <button
-                  onClick={() => {
-                    const el = document.getElementById(`qty-block-${index}`);
-                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                    handleProceedToCheckout(item, qty);
-                  }}
-                  style={{
-                    flex:1,
-                    padding:"12px",
-                    background:"#00BFFF",
-                    border:"none",
-                    borderRadius:"10px",
-                    color:"white",
-                    fontWeight:"bold",
-                    cursor:"pointer",
-                    transition: "opacity 0.2s ease"
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  Proceed to Buy
-                </button>
-              ) : (
-                <button
-                  onClick={() => {
-                    const el = document.getElementById(`qty-block-${index}`);
-                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                    el.value = "1";
-                    setAdded((p) => ({ ...p, [index]: true }));
-                  }}
-                  style={{
-                    flex:1,
-                    padding:"12px",
-                    background:"#00BFFF",
-                    border:"none",
-                    borderRadius:"10px",
-                    color:"white",
-                    fontWeight:"bold",
-                    cursor:"pointer",
-                    transition: "opacity 0.2s ease"
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                >
-                  Add to Cart
-                </button>
-              )}
+              <button
+                onClick={() => {
+                  const el = document.getElementById(`qty-block-${index}`);
+                  const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                  handleAddToCart(item, qty);
+                }}
+                style={{
+                  flex:1,
+                  padding:"12px",
+                  background:"#00BFFF",
+                  border:"none",
+                  borderRadius:"10px",
+                  color:"white",
+                  fontWeight:"bold",
+                  cursor:"pointer",
+                  transition: "opacity 0.2s ease"
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                Add to Cart
+              </button>
 
               <button
                 style={{
@@ -196,7 +195,7 @@ function DryIceBlocks() {
                 onClick={() => {
                   const el = document.getElementById(`qty-block-${index}`);
                   const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                  handleProceedToCheckout(item, qty);
+                  handleBuyNow(item, qty);
                 }}
               >
                 Buy Now
@@ -210,8 +209,22 @@ function DryIceBlocks() {
 
       </div>
 
+      <style>{`
+        @keyframes slideIn {
+          from {
+            transform: translateX(400px);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+      `}</style>
+
     </div>
   );
 }
 
 export default DryIceBlocks;
+

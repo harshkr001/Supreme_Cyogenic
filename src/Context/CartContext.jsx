@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const CartContext = createContext();
 
@@ -13,6 +13,23 @@ export const useCart = () => {
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [checkoutData, setCheckoutData] = useState(null);
+
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem('supremeCryogenic_cart');
+      if (savedCart) {
+        setCartItems(JSON.parse(savedCart));
+      }
+    } catch (error) {
+      console.error('Error loading cart from localStorage:', error);
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('supremeCryogenic_cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const addToCart = (product, quantity) => {
     setCartItems((prev) => {
@@ -56,6 +73,17 @@ export const CartProvider = ({ children }) => {
     return checkoutData;
   };
 
+  const getTotalItems = () => {
+    return cartItems.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const getTotalPrice = () => {
+    return cartItems.reduce((total, item) => {
+      const price = parseFloat(item.price.split(' ')[1] || '0');
+      return total + price * item.quantity;
+    }, 0);
+  };
+
   const value = {
     cartItems,
     addToCart,
@@ -64,6 +92,8 @@ export const CartProvider = ({ children }) => {
     clearCart,
     setCheckout,
     getCheckoutData,
+    getTotalItems,
+    getTotalPrice,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

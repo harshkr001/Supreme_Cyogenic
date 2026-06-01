@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { useCart } from "../Context/CartContext";
 
 const products = [
   {
@@ -23,6 +24,9 @@ const products = [
 ];
 
 function Nav({ onAuthClick }) {
+  const navigate = useNavigate();
+  const { getTotalItems } = useCart();
+  const cartCount = getTotalItems();
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -384,6 +388,54 @@ function Nav({ onAuthClick }) {
         </Link>
         <button
           type="button"
+          onClick={() => navigate('/cart')}
+          style={{
+            position: 'relative',
+            borderRadius: "8px",
+            border: "1px solid rgba(0, 174, 239, 0.35)",
+            background: "rgba(7, 17, 31, 0.5)",
+            color: "#D8F8FF",
+            fontSize: "18px",
+            fontWeight: "600",
+            padding: "10px 16px",
+            cursor: "pointer",
+            transition: "transform 0.2s ease, background 0.2s ease",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-1px)";
+            e.currentTarget.style.background = "rgba(7, 17, 31, 0.8)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.background = "rgba(7, 17, 31, 0.5)";
+          }}
+        >
+          🛒
+          {cartCount > 0 && (
+            <span style={{
+              position: 'absolute',
+              top: '-8px',
+              right: '-8px',
+              background: '#00C864',
+              color: '#07111d',
+              width: '22px',
+              height: '22px',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '12px',
+              fontWeight: '700',
+            }}>
+              {cartCount}
+            </span>
+          )}
+        </button>
+        <button
+          type="button"
           onClick={onAuthClick}
           className="cta-button"
           style={{
@@ -408,3 +460,4 @@ function Nav({ onAuthClick }) {
 }
 
 export default Nav;
+
