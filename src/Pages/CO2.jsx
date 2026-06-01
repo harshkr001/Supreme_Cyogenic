@@ -1,32 +1,46 @@
-import Footer from "../Components/Footer"
-import { addToCart } from "../lib/cart";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 const products = [
   {
+    id: "co2-0",
     image: "/co2a.jpeg",
     title: "Industrial CO₂ Cylinders",
     price: "Custom Pricing",
     desc: "High purity industrial CO₂ gas for commercial and manufacturing applications."
   },
-
   {
+    id: "co2-1",
     image: "/co2b.jpeg",
     title: "Beverage Grade CO₂",
     price: "LKR 4500 / Cylinder",
     desc: "Premium beverage-grade CO₂ solutions for restaurants and food industries."
   },
-
   {
+    id: "co2-2",
     image: "/co2c.jpeg",
     title: "Bulk CO₂ Supply",
     price: "Bulk Orders Available",
     desc: "Reliable large-scale CO₂ supply solutions for industrial operations."
   }
-]
+];
 
 function CO2() {
+  const navigate = useNavigate();
+  const { setCheckout } = useCart();
   const [added, setAdded] = useState({});
+
+  const handleProceedToCheckout = (product, quantity) => {
+    const checkoutItems = [{ ...product, quantity }];
+    const price = parseFloat(product.price.split(" ")[1] || "0");
+    const subtotal = isNaN(price) ? 0 : price * quantity;
+    const total = subtotal * 1.18;
+
+    setCheckout({ items: checkoutItems, total });
+    navigate("/checkout");
+  };
+
   return (
     <div
       style={{
@@ -88,9 +102,33 @@ function CO2() {
             </p>
 
             <div style={{ display: "flex", gap: "12px", marginTop: "20px", alignItems: "center" }}>
-              <input id={`qty-co2-${index}`} type="number" min={1} defaultValue={1} style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #1b2b37", background: "#07121a", color: "white" }} />
+              <input 
+                id={`qty-co2-${index}`} 
+                type="number" 
+                min={1} 
+                defaultValue={1} 
+                style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #1b2b37", background: "#07121a", color: "white" }} 
+              />
               {added[index] ? (
-                <button onClick={() => { window.location.href = "/cart"; }} style={{ flex: 1, padding: "14px", background: "#00e5ff", border: "none", borderRadius: "10px", fontWeight: "bold", cursor: "pointer" }}>
+                <button 
+                  onClick={() => {
+                    const el = document.getElementById(`qty-co2-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    handleProceedToCheckout(product, qty);
+                  }}
+                  style={{ 
+                    flex: 1, 
+                    padding: "14px", 
+                    background: "#00e5ff", 
+                    border: "none", 
+                    borderRadius: "10px", 
+                    fontWeight: "bold", 
+                    cursor: "pointer",
+                    transition: "opacity 0.2s ease"
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
                   Proceed to Buy
                 </button>
               ) : (
@@ -98,7 +136,6 @@ function CO2() {
                   onClick={() => {
                     const el = document.getElementById(`qty-co2-${index}`);
                     const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                    addToCart({ id: `co2-${index}`, title: product.title, price: product.price, image: product.image }, qty);
                     el.value = "1";
                     setAdded((p) => ({ ...p, [index]: true }));
                   }}
@@ -109,8 +146,11 @@ function CO2() {
                     border: "none",
                     borderRadius: "10px",
                     fontWeight: "bold",
-                    cursor: "pointer"
+                    cursor: "pointer",
+                    transition: "opacity 0.2s ease"
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
                   Add To Cart
                 </button>
@@ -125,13 +165,19 @@ function CO2() {
                   border: "2px solid #00e5ff",
                   borderRadius: "10px",
                   fontWeight: "bold",
-                  cursor: "pointer"
+                  cursor: "pointer",
+                  transition: "all 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(0, 229, 255, 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
                 }}
                 onClick={() => {
                   const el = document.getElementById(`qty-co2-${index}`);
                   const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                  addToCart({ id: `co2-${index}`, title: product.title, price: product.price, image: product.image }, qty);
-                  window.location.href = "/login";
+                  handleProceedToCheckout(product, qty);
                 }}
               >
                 Buy Now
@@ -141,9 +187,8 @@ function CO2() {
         ))}
       </div>
 
-      
     </div>
-  )
+  );
 }
 
-export default CO2
+export default CO2;

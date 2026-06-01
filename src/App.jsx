@@ -10,6 +10,9 @@ import DryIceBlocks from "./Pages/DryIceBlocks";
 import DryIcePellets from "./Pages/DryIcePellets";
 import Nav from "./Components/Nav";
 import AuthModal from "./Components/AuthModal";
+import { CheckoutPage } from "./Pages/CheckoutPage";
+import { OrderSuccessPage } from "./Pages/OrderSuccessPage";
+import { CartProvider } from "./Context/CartContext";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -18,35 +21,39 @@ function App() {
 
   return (
     <BrowserRouter>
+      <CartProvider>
+        <Nav onAuthClick={() => setIsAuthOpen(true)} />
 
-      <Nav onAuthClick={() => setIsAuthOpen(true)} />
+        <Routes>
 
-      <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/login" element={<Login />} />
+          <Route path="/dry-ice" element={<DryIce />} />
 
-        <Route path="/dry-ice" element={<DryIce />} />
+          <Route path="/dry-ice/blocks" element={<DryIceBlocks />} />
+          <Route path="/dry-ice-blocks" element={<DryIceBlocks />} />
 
-        <Route path="/dry-ice/blocks" element={<DryIceBlocks />} />
-        <Route path="/dry-ice-blocks" element={<DryIceBlocks />} />
+          <Route path="/dry-ice/pellets" element={<DryIcePellets />} />
+          <Route path="/dry-ice-pellets" element={<DryIcePellets />} />
 
-        <Route path="/dry-ice/pellets" element={<DryIcePellets />} />
-        <Route path="/dry-ice-pellets" element={<DryIcePellets />} />
+          <Route path="/co2" element={<CO2 />} />
 
-        <Route path="/co2" element={<CO2 />} />
+          <Route path="/about" element={<About />} />
 
-        <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
 
-        <Route path="/contact" element={<Contact />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
 
-      </Routes>
+          <Route path="/order-success" element={<OrderSuccessPage />} />
 
-      <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+        </Routes>
 
-      <Footer />
+        <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
 
+        <Footer />
+      </CartProvider>
     </BrowserRouter>
   );
 }

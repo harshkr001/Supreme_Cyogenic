@@ -1,31 +1,44 @@
 import { useState } from "react";
-import { addToCart } from "../lib/cart";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../Context/CartContext";
 
 function DryIceBlocks() {
+  const navigate = useNavigate();
+  const { setCheckout } = useCart();
   const [added, setAdded] = useState({});
 
   const products = [
     {
+      id: "block-0",
       image: "/block1.jpeg",
       title: "Industrial Dry Ice Blocks",
       price: "LKR 1200 / 5kg",
       desc: "High quality dry ice blocks for industrial cooling and transport."
     },
-
     {
+      id: "block-1",
       image: "/block2.jpeg",
       title: "Premium Cooling Blocks",
       price: "LKR 2200 / 10kg",
       desc: "Long-lasting cooling blocks suitable for storage applications."
     },
-
     {
+      id: "block-2",
       image: "/block3.jpeg",
       title: "Bulk Dry Ice Blocks",
       price: "Custom Pricing",
       desc: "Bulk supply solutions for industrial and commercial operations."
     }
   ];
+
+  const handleProceedToCheckout = (product, quantity) => {
+    const checkoutItems = [{ ...product, quantity }];
+    const subtotal = parseFloat(product.price.split(" ")[1] || "0") * quantity;
+    const total = subtotal * 1.18;
+
+    setCheckout({ items: checkoutItems, total });
+    navigate("/checkout");
+  };
 
   return (
     <div
@@ -68,7 +81,7 @@ function DryIceBlocks() {
         }}
       >
 
-        {products.map((item,index)=>(
+        {products.map((item, index)=>(
 
           <div
             key={index}
@@ -83,7 +96,7 @@ function DryIceBlocks() {
 
             <img
               src={item.image}
-              alt=""
+              alt={item.title}
               style={{
                 width:"100%",
                 height:"250px",
@@ -115,7 +128,11 @@ function DryIceBlocks() {
 
               {added[index] ? (
                 <button
-                  onClick={() => { window.location.href = "/cart"; }}
+                  onClick={() => {
+                    const el = document.getElementById(`qty-block-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    handleProceedToCheckout(item, qty);
+                  }}
                   style={{
                     flex:1,
                     padding:"12px",
@@ -124,8 +141,11 @@ function DryIceBlocks() {
                     borderRadius:"10px",
                     color:"white",
                     fontWeight:"bold",
-                    cursor:"pointer"
+                    cursor:"pointer",
+                    transition: "opacity 0.2s ease"
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
                   Proceed to Buy
                 </button>
@@ -134,7 +154,6 @@ function DryIceBlocks() {
                   onClick={() => {
                     const el = document.getElementById(`qty-block-${index}`);
                     const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                    addToCart({ id: `block-${index}`, title: item.title, price: item.price, image: item.image }, qty);
                     el.value = "1";
                     setAdded((p) => ({ ...p, [index]: true }));
                   }}
@@ -146,8 +165,11 @@ function DryIceBlocks() {
                     borderRadius:"10px",
                     color:"white",
                     fontWeight:"bold",
-                    cursor:"pointer"
+                    cursor:"pointer",
+                    transition: "opacity 0.2s ease"
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
                   Add to Cart
                 </button>
@@ -162,13 +184,19 @@ function DryIceBlocks() {
                   borderRadius:"10px",
                   color:"#00BFFF",
                   fontWeight:"bold",
-                  cursor:"pointer"
+                  cursor:"pointer",
+                  transition: "all 0.2s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(0, 191, 255, 0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "transparent";
                 }}
                 onClick={() => {
                   const el = document.getElementById(`qty-block-${index}`);
                   const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                  addToCart({ id: `block-${index}`, title: item.title, price: item.price, image: item.image }, qty);
-                  window.location.href = "/login";
+                  handleProceedToCheckout(item, qty);
                 }}
               >
                 Buy Now
