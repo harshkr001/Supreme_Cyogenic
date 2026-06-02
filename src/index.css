@@ -288,6 +288,55 @@ border-radius: 8px;
   }
 }
 
+/* Feature Card Tooltips */
+.feature-tooltip {
+  animation: tooltipFadeSlide 0.3s ease-out forwards;
+}
+
+@keyframes tooltipFadeSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.tooltip-arrow {
+  pointer-events: none;
+}
+
+/* Responsive tooltip for smaller screens */
+@media (max-width: 640px) {
+  .feature-tooltip {
+    width: 240px;
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .feature-tooltip h4 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .feature-tooltip p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+}
+
+/* Tooltip positioning adjustments for small screens */
+@media (max-width: 768px) {
+  .feature-tooltip {
+    position: fixed;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+  }
+}
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: 'Geist Variable', sans-serif;
