@@ -106,16 +106,13 @@ function DryIcePellets() {
             }}
           >
 
-            <img
-              src={item.image}
-              alt={item.title}
-              style={{
-                width: "100%",
-                height: "250px",
-                objectFit: "cover",
-                borderRadius: "15px"
-              }}
-            />
+            <div className="product-image-container">
+              <img
+                className="product-image"
+                src={item.image}
+                alt={item.title}
+              />
+            </div>
 
             <h2>{item.title}</h2>
 

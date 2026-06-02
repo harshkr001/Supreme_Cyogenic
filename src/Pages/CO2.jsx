@@ -103,16 +103,13 @@ function CO2() {
               boxShadow: "0 10px 30px rgba(0,0,0,0.3)"
             }}
           >
-            <img
-              src={product.image}
-              alt={product.title}
-              style={{
-                width: "100%",
-                height: "250px",
-                objectFit: "cover",
-                borderRadius: "14px"
-              }}
-            />
+            <div className="product-image-container">
+              <img
+                className="product-image"
+                src={product.image}
+                alt={product.title}
+              />
+            </div>
 
             <h2 style={{ marginTop: "20px" }}>
               {product.title}

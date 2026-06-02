@@ -119,16 +119,13 @@ function DryIceBlocks() {
             }}
           >
 
-            <img
-              src={item.image}
-              alt={item.title}
-              style={{
-                width:"100%",
-                height:"250px",
-                objectFit:"cover",
-                borderRadius:"16px"
-              }}
-            />
+            <div className="product-image-container">
+              <img
+                className="product-image"
+                src={item.image}
+                alt={item.title}
+              />
+            </div>
 
             <h2 style={{marginTop:"20px"}}>
               {item.title}
