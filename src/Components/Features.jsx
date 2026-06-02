@@ -20,13 +20,14 @@ function Features(){
     };
 
     const cardVariants = {
+        hidden: { opacity: 0, y: 40 },
+        show: { opacity: 1, y: 0,},
     };
 
     const tooltipVariants = {
         hidden: { opacity: 0, y: 10 },
         show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut", }, },
-        hidden: { opacity: 0, x: 80 },
-        show: { opacity: 1, x: 0 },
+        
     };
     const Features = [
         { 
@@ -56,6 +57,7 @@ function Features(){
         
     ]
     const handleCardHover = (index) => {
+        console.log("hover", index);
         setHoveredCard(index);
     };
 
@@ -77,7 +79,7 @@ function Features(){
             
             }}>
 
-            <motion.h2 style={{ textAlign: "center", fontSize: "42px", marginBottom: "50px", overflow: "hidden" }}
+            <motion.h2 style={{ textAlign: "center", fontSize: "42px", marginBottom: "50px", color:"#FFFFFF", overflow: "hidden", }}
                 variants={container}
                 initial="hidden"
                 whileInView="show"
@@ -110,7 +112,7 @@ function Features(){
                             border: hoveredCard === i || mobileTooltip === i 
                                 ? "1px solid rgba(0, 191, 255, 0.4)"
                                 : "1px solid rgba(255,255,255,0.04)",
-                            border: "1px solid rgba(255,255,255,0.04)",
+                            
                             boxShadow: hoveredCard === i || mobileTooltip === i 
                                 ? "0 20px 50px rgba(0, 191, 255, 0.3), 0 0 30px rgba(0, 191, 255, 0.2)"
                                 : "0 8px 30px rgba(0,0,0,0.6)",
