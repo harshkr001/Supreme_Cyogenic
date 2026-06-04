@@ -265,7 +265,6 @@ function Nav({ onAuthClick }) {
                   </div>
                   <Link
                     to={product.path}
-                    className="nav-link"
                     onClick={() => setProductsMenuOpen(false)}
                     style={{
                       display: "inline-flex",
