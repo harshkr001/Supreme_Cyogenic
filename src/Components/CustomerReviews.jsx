@@ -83,7 +83,7 @@ function CustomerReviews() {
             Trusted by businesses across industries for premium dry ice and cryogenic solutions.
           </h2>
           <p style={{ margin: 0, color: "#CBD5E1", fontSize: "16px", lineHeight: 1.8 }}>
-            Real feedback from customers who rely on Supreme Cryogenic for dependable dry ice and CO₂ services.
+             Feedback from customers who rely on Supreme Cryogenic for dependable dry ice and CO₂ services.
           </p>
         </div>
 

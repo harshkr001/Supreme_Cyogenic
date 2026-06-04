@@ -29,16 +29,15 @@ function Nav({ onAuthClick }) {
   const { getTotalItems } = useCart();
   const cartCount = getTotalItems();
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
-  const [aboutMenuOpen, setAboutMenuOpen] = useState(false);
+  const [updatesTooltipOpen, setUpdatesTooltipOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   
   const productsDropdownRef = useRef(null);
   const productsTriggerRef = useRef(null);
   const productsHideTimeout = useRef(null);
   
-  const aboutDropdownRef = useRef(null);
-  const aboutTriggerRef = useRef(null);
-  const aboutHideTimeout = useRef(null);
+  const updatesTriggerRef = useRef(null);
+
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 880px)");
@@ -58,15 +57,6 @@ function Nav({ onAuthClick }) {
         !productsTriggerRef.current.contains(event.target)
       ) {
         setProductsMenuOpen(false);
-      }
-      
-      if (
-        aboutDropdownRef.current &&
-        !aboutDropdownRef.current.contains(event.target) &&
-        aboutTriggerRef.current &&
-        !aboutTriggerRef.current.contains(event.target)
-      ) {
-        setAboutMenuOpen(false);
       }
     };
 
@@ -90,25 +80,6 @@ function Nav({ onAuthClick }) {
   const toggleProductsDropdown = () => {
     if (isMobile) {
       setProductsMenuOpen((current) => !current);
-    }
-  };
-
-  const openAboutDropdown = () => {
-    if (!isMobile) {
-      window.clearTimeout(aboutHideTimeout.current);
-      setAboutMenuOpen(true);
-    }
-  };
-
-  const closeAboutDropdown = () => {
-    if (!isMobile) {
-      aboutHideTimeout.current = window.setTimeout(() => setAboutMenuOpen(false), 150);
-    }
-  };
-
-  const toggleAboutDropdown = () => {
-    if (isMobile) {
-      setAboutMenuOpen((current) => !current);
     }
   };
 
@@ -287,103 +258,63 @@ function Nav({ onAuthClick }) {
             </div>
           </div>
         </div>
-
-        <div
-          ref={aboutDropdownRef}
-          style={{ position: "relative" }}
-          onMouseEnter={openAboutDropdown}
-          onMouseLeave={closeAboutDropdown}
+        <Link
+          to="/about"
+          className="nav-link"
+          style={{
+            color: "#0B2447",
+            textDecoration: "none",
+            fontSize: "18px",
+            fontWeight: "500",
+          }}
         >
-          <button
-            ref={aboutTriggerRef}
-            type="button"
-            onClick={toggleAboutDropdown}
-            aria-haspopup="menu"
-            aria-expanded={aboutMenuOpen}
+          About us
+        </Link>
+        <div
+          ref={updatesTriggerRef}
+          style={{ position: "relative" }}
+          onMouseEnter={() => setUpdatesTooltipOpen(true)}
+          onMouseLeave={() => setUpdatesTooltipOpen(false)}
+        >
+          <Link
+            to="/updates"
+            className="nav-link"
             style={{
               color: "#0B2447",
+              textDecoration: "none",
               fontSize: "18px",
               fontWeight: "500",
-              cursor: "pointer",
-              background: "transparent",
-              border: "none",
-              padding: 0,
               display: "flex",
               alignItems: "center",
-              gap: "8px",
+              gap: "6px",
             }}
           >
-            About us
-            <span
+            Updates
+            <span style={{ fontSize: "14px", lineHeight: 1 }}>▼</span>
+          </Link>
+          {updatesTooltipOpen && (
+            <div
               style={{
-                display: "inline-block",
-                transition: "transform 0.2s ease",
-                transform: aboutMenuOpen ? "rotate(180deg)" : "rotate(0deg)",
+                position: "absolute",
+                top: "calc(100% + 12px)",
+                left: "50%",
+                transform: "translateX(-50%)",
+                minWidth: "220px",
+                padding: "12px 14px",
+                background: "rgba(7, 17, 31, 0.96)",
+                border: "1px solid rgba(0, 174, 239, 0.18)",
+                borderRadius: "16px",
+                boxShadow: "0 18px 50px rgba(0, 174, 239, 0.2)",
+                color: "#E2F8FF",
+                fontSize: "13px",
+                lineHeight: 1.6,
+                zIndex: 1002,
+                textAlign: "left",
               }}
             >
-              ▼
-            </span>
-          </button>
-
-          <div
-            style={{
-              position: "absolute",
-              right: 0,
-              top: "calc(100% + 12px)",
-              width: "min(420px, 100vw - 40px)",
-              padding: "24px",
-              borderRadius: "22px",
-              background: "rgba(255,255,255,0.98)",
-              boxShadow: "0 24px 60px rgba(11, 36, 71, 0.16)",
-              border: "1px solid rgba(11, 36, 71, 0.08)",
-              opacity: aboutMenuOpen ? 1 : 0,
-              visibility: aboutMenuOpen ? "visible" : "hidden",
-              transform: aboutMenuOpen ? "translateY(0)" : "translateY(-10px)",
-              transition:
-                "opacity 220ms ease, transform 220ms ease, visibility 220ms ease",
-              pointerEvents: aboutMenuOpen ? "auto" : "none",
-              zIndex: 1001,
-            }}
-            role="menu"
-          >
-            <article>
-              <h3 style={{ margin: "0 0 16px 0", fontSize: "18px", fontWeight: 700, color: "#0B2447" }}>
-                About Our Company
-              </h3>
-              <p
-                style={{
-                  margin: "0 0 24px 0",
-                  lineHeight: "1.8",
-                  color: "#334155",
-                  fontSize: "14px",
-                }}
-              >
-                We are a leading provider of Dry Ice and CO2 solutions, delivering high-quality products for industrial, commercial, and specialized applications. Our focus is on innovation, reliability, safety, and customer satisfaction.
-              </p>
-              <Link
-                to="/about"
-                onClick={() => setAboutMenuOpen(false)}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "999px",
-                  padding: "12px 20px",
-                  width: "fit-content",
-                  background: "#00AEEF",
-                  color: "#fff",
-                  fontWeight: 600,
-                  fontSize: "14px",
-                  textDecoration: "none",
-                  transition: "background 0.2s ease",
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = "#0096d1")}
-                onMouseLeave={(e) => (e.currentTarget.style.background = "#00AEEF")}
-              >
-                Learn More About Us
-              </Link>
-            </article>
-          </div>
+              Latest updates, market intelligence, and industry news from Supreme Cryogenic.
+            </div>
+          )}
         </div>
         <Link
           to="/contact"

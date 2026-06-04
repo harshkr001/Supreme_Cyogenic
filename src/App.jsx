@@ -5,6 +5,7 @@ import CO2 from "./Pages/CO2";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Home from "./Pages/Home";
+import Updates from "./Pages/Updates";
 import Footer from "./Components/Footer";
 import DryIceBlocks from "./Pages/DryIceBlocks";
 import DryIcePellets from "./Pages/DryIcePellets";
@@ -42,6 +43,8 @@ function App() {
           <Route path="/co2" element={<CO2 />} />
 
           <Route path="/about" element={<About />} />
+
+          <Route path="/updates" element={<Updates />} />
 
           <Route path="/contact" element={<Contact />} />
 
