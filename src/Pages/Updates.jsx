@@ -233,17 +233,16 @@ function Updates() {
             {newsArticles.map((item) => (
               <motion.article
                 key={item.title}
+                className="product-card update-card"
                 whileHover={{ y: -8, boxShadow: "0 18px 50px rgba(14, 165, 233, 0.2)", borderColor: "rgba(56, 189, 248, 0.45)" }}
                 transition={{ type: "spring", stiffness: 210, damping: 20 }}
                 style={{
-                  background: "rgba(5, 18, 39, 0.92)",
-                  border: "1px solid rgba(56, 189, 248, 0.14)",
-                  borderRadius: "22px",
-                  padding: "26px",
                   minHeight: "190px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
+                  width: "100%",
+                  padding: "32px",
                 }}
               >
                 <div>
@@ -264,14 +263,13 @@ function Updates() {
             {marketReports.map((report) => (
               <motion.article
                 key={report.title}
+                className="product-card update-card"
                 whileHover={{ y: -8, boxShadow: "0 18px 50px rgba(14, 165, 233, 0.18)", borderColor: "rgba(56, 189, 248, 0.45)" }}
                 transition={{ duration: 0.25 }}
                 style={{
-                  background: "rgba(6, 19, 37, 0.92)",
-                  border: "1px solid rgba(56, 189, 248, 0.14)",
-                  borderRadius: "20px",
-                  padding: "24px",
                   minHeight: "200px",
+                  padding: "32px",
+                  width: "100%",
                 }}
               >
                 <h3 style={{ margin: "0 0 14px", fontSize: "1.25rem", color: "#F8FAFC" }}>{report.title}</h3>
@@ -288,13 +286,12 @@ function Updates() {
             {awards.map((award) => (
               <motion.article
                 key={award.title}
+                className="product-card update-card"
                 {...hoverCard}
                 style={{
-                  background: "rgba(6, 15, 32, 0.94)",
-                  border: "1px solid rgba(56, 189, 248, 0.16)",
-                  borderRadius: "22px",
-                  padding: "26px",
                   minHeight: "180px",
+                  padding: "32px",
+                  width: "100%",
                 }}
               >
                 <span style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#7DD3FC", fontSize: "12px", fontWeight: 700, textTransform: "uppercase" }}>
@@ -314,13 +311,12 @@ function Updates() {
             {buyerSellerUpdates.map((item) => (
               <motion.article
                 key={item.title}
+                className="product-card update-card"
                 {...hoverCard}
                 style={{
-                  background: "rgba(4, 12, 28, 0.96)",
-                  border: "1px solid rgba(56, 189, 248, 0.14)",
-                  borderRadius: "22px",
-                  padding: "24px",
                   minHeight: "180px",
+                  padding: "32px",
+                  width: "100%",
                 }}
               >
                 <h3 style={{ margin: "0 0 14px", fontSize: "1.2rem", color: "#F8FAFC" }}>{item.title}</h3>
@@ -336,13 +332,12 @@ function Updates() {
             {companyUpdates.map((item) => (
               <motion.article
                 key={item.title}
+                className="product-card update-card"
                 {...hoverCard}
                 style={{
-                  background: "rgba(4, 12, 28, 0.96)",
-                  border: "1px solid rgba(56, 189, 248, 0.14)",
-                  borderRadius: "22px",
-                  padding: "24px",
                   minHeight: "180px",
+                  padding: "32px",
+                  width: "100%",
                 }}
               >
                 <h3 style={{ margin: "0 0 14px", fontSize: "1.2rem", color: "#F8FAFC" }}>{item.title}</h3>
