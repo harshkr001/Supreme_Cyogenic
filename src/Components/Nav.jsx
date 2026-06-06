@@ -130,8 +130,30 @@ function Nav({ onAuthClick }) {
           }}
         />
         <div>
-          <h1 style={{ margin: "0", color: "#0B2447", fontSize: "32px" }}>SUPREME</h1>
-          <p style={{ margin: "0", color: "#00AEEF", letterSpacing: "6px" }}>CRYOGENIC</p>
+          <h1
+           style={{
+             margin: "0",
+             color: "#0B2447",
+             fontSize: "34px",
+             fontFamily: "'Montserrat', sans-serif",
+             fontWeight: "800",
+             letterSpacing: "1px",
+           }}
+          >
+          SUPREME
+          </h1>
+          <p
+           style={{
+             margin: "0",
+             color: "#90AEEF",
+             letterSpacing: "8px",
+             fontFamily: "'Montserrat', sans-serif",
+             fontWeight: "500",
+             fontSize: "16px",
+          }}
+          >
+          CRYOGENIC
+          </p>
         </div>
       </button>
 
