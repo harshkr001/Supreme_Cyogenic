@@ -86,6 +86,7 @@ function Footer() {
             <Link
               style={linkStyle}
               to="/co2"
+              onClick={() => window.scrollTo(0, 0)}
             >
               CO₂
             </Link>
@@ -93,6 +94,7 @@ function Footer() {
             <Link
               style={linkStyle}
               to="/contact"
+              onClick={() => window.scrollTo(0, 0)}
             >
               Contact
             </Link>
