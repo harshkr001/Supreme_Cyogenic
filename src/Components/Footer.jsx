@@ -68,7 +68,11 @@ function Footer() {
             }}
           >
 
-            <Link style={linkStyle} to="/">
+            <Link 
+            style={linkStyle} 
+            to="/"
+            onClick={() => window.scrollTo(0, 0)}
+            >
               Home
             </Link>
 
