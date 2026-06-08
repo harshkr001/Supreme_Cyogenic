@@ -321,20 +321,44 @@ function Nav({ onAuthClick }) {
                 top: "calc(100% + 12px)",
                 left: "50%",
                 transform: "translateX(-50%)",
-                minWidth: "220px",
-                padding: "12px 14px",
-                background: "rgba(7, 17, 31, 0.96)",
-                border: "1px solid rgba(0, 174, 239, 0.18)",
-                borderRadius: "16px",
-                boxShadow: "0 18px 50px rgba(0, 174, 239, 0.2)",
-                color: "#E2F8FF",
-                fontSize: "13px",
-                lineHeight: 1.6,
+                Width: "500px",
+                minWidth: "450px",
+                padding: "30px",
+                background: "#FFFFFF",
+                
+                borderRadius: "24px",
+                boxShadow: "0 15px 40px rgba(0, 0, 0, 0.15)",
+                color: "#111827",
+                
+                
                 zIndex: 1002,
                 textAlign: "left",
               }}
             >
-              Latest updates, market intelligence, and industry news from Supreme Cryogenic.
+              <div>
+              <h3
+                style={{
+                  margin: "0 0 15px 0",
+                  fontSize: "24px",
+                  fontWeight: "700",
+                  color: "#111827",
+                }}
+              >
+               Updates
+              </h3>
+               <p
+
+                style={{
+                margin: 0,
+     
+                color: "#6B7280",
+                lineHeight: "1.8",
+                fontSize: "16px",
+               }}
+               >
+                Latest updates, market intelligence, and industry news from Supreme Cryogenic.
+                </p>
+              </div>
             </div>
           )}
         </div>
