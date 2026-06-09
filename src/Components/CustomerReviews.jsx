@@ -45,10 +45,19 @@ function CustomerReviews() {
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
       style={{
-        padding: "90px 24px",
-        background: "linear-gradient(180deg, #040b19 0%, #081526 100%)",
-        color: "#F8FAFC",
-      }}
+       padding: "120px 24px",
+
+       background: `
+       linear-gradient(rgba(7,17,31,0.75), rgba(7,17,31,0.75)),
+       url('/customer-bg.jpeg')
+       `,
+
+       backgroundSize: "cover",
+       backgroundPosition: "center top",
+       backgroundRepeat: "no-repeat",
+
+       color: "#F8FAFC",
+       }}
     >
       <div
         style={{
