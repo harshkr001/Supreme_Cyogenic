@@ -45,15 +45,15 @@ function CustomerReviews() {
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
       style={{
-       padding: "120px 24px",
+       padding: "140px 24px 300px",
 
        background: `
-       linear-gradient(rgba(7,17,31,0.75), rgba(7,17,31,0.75)),
+       linear-gradient(rgba(7,17,31,0.45), rgba(7,17,31,0.45)),
        url('/customer-bg.jpeg')
        `,
 
        backgroundSize: "cover",
-       backgroundPosition: "center top",
+       backgroundPosition: "center center",
        backgroundRepeat: "no-repeat",
 
        color: "#F8FAFC",
@@ -102,6 +102,11 @@ function CustomerReviews() {
             gap: "24px",
             flexWrap: "wrap",
             justifyContent: "center",
+
+            marginTop: "250px",
+            transform: "translateY(120px)",
+            position: "relative",
+            zIndex: 2,
           }}
         >
           {reviews.map((review, index) => (
@@ -114,16 +119,16 @@ function CustomerReviews() {
                 flex: "1 1 320px",
                 minWidth: "280px",
                 maxWidth: "360px",
-                background: "rgba(5, 20, 42, 0.92)",
-                border: "1px solid rgba(56, 189, 248, 0.12)",
+                background: "rgba(5, 20, 42, 0.45)",
+                border: "1px solid rgba(255, 255, 255, 0.15)",
                 borderRadius: "24px",
                 padding: "28px",
                 display: "flex",
                 flexDirection: "column",
                 gap: "20px",
                 boxShadow: "0 18px 40px rgba(4, 11, 22, 0.35)",
-                backdropFilter: "blur(18px)",
-                WebkitBackdropFilter: "blur(18px)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
                 transition: "border-color 0.3s ease, transform 0.3s ease",
               }}
             >
