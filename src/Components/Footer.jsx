@@ -78,9 +78,18 @@ function Footer() {
 
             <Link
               style={linkStyle}
-              to="/dry-ice"
+              to="/dry-ice-blocks"
+              onClick={() => window.scrollTo(0, 0)}
             >
-              Dry Ice
+              Dry Ice Blocks
+            </Link>
+
+            <Link
+              style={linkStyle}
+              to="/dry-ice-pellets"
+              onClick={() => window.scrollTo(0, 0)}
+            >
+              Dry Ice Pellets
             </Link>
 
             <Link
