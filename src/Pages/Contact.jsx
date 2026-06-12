@@ -1,6 +1,57 @@
-
+import { useState } from "react";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    nationality: "",
+    email: "",
+    phone: "",
+    product: "",
+    message: ""
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://localhost:5000/api/inquiry", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Inquiry submitted successfully!");
+
+      setFormData({
+        name: "",
+        nationality: "",
+        email: "",
+        phone: "",
+        product: "",
+        message: "",
+      });
+    } else {
+      alert(data.message || "Something went wrong");
+    }
+  } catch (error) {
+    console.error(error);
+    alert("Server error");
+   }
+};
+
   return (
     <div
       style={{
@@ -84,7 +135,7 @@ function Contact() {
           >
             <h2 style={{ color: "#00e5ff" }}>📞 Phone</h2>
             <p style={{ color: "#cbd5e1", marginTop: "10px" }}>
-              +94 77 123 4567
+              +91 77 123 4567
             </p>
           </div>
 
@@ -124,6 +175,7 @@ function Contact() {
           </h2>
 
           <form
+            onSubmit={handleSubmit}
             style={{
               display: "flex",
               flexDirection: "column",
@@ -133,17 +185,61 @@ function Contact() {
 
             <input
               type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
               placeholder="Your Name"
               style={inputStyle}
             />
 
+            <select
+              name="nationality"
+              value={formData.nationality}
+              onChange={handleChange}
+              style={inputStyle}
+            >
+             <option value="">Select Nationality</option>
+             <option value="Indian">Indian</option>
+             <option value="Sri Lankan">Sri Lankan</option>
+             <option value="American">American</option>
+             <option value="British">British</option>
+             <option value="Canadian">Canadian</option>
+             <option value="Australian">Australian</option>
+             <option value="Other">Other</option>
+            </select>
+
             <input
               type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
               placeholder="Your Email"
               style={inputStyle}
             />
 
+            <input
+              type="text"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              placeholder="Phone Number"
+              style={inputStyle}
+            />
+
+
+            <input
+              type="text"
+              name="product"
+              value={formData.product}
+              onChange={handleChange}
+              placeholder="Product Interested In"
+              style={inputStyle}
+            />
+
             <textarea
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
               placeholder="Your Message"
               rows="6"
               style={{
@@ -153,6 +249,7 @@ function Contact() {
             />
 
             <button
+              type="submit"
               style={{
                 padding: "18px",
                 background: "#00e5ff",
