@@ -6,51 +6,75 @@ function Contact() {
     nationality: "",
     email: "",
     phone: "",
+    category: "",
     product: "",
     message: ""
   });
+
+  const productOptions = {
+    "Dry Ice Blocks": [
+      "Industrial Dry Ice Blocks",
+      "Premium Cooling Blocks",
+      "Bulk Dry Ice Blocks",
+    ],
+    "Dry Ice Pellets": [
+      "Industrial Grade Pellets",
+      "Premium Dry Ice Pellets",
+      "Bulk Dry Ice Pellets",
+    ],
+    "Liquid CO₂": [
+      "Industrial Cylinders",
+      "Beverage Grade CO₂",
+      "Bulk CO₂ Supply",
+    ],
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
+      ...(name === "category" ? { product: "" } : {}),
     }));
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const response = await fetch("http://localhost:5000/api/inquiry", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert("Inquiry submitted successfully!");
-
-      setFormData({
-        name: "",
-        nationality: "",
-        email: "",
-        phone: "",
-        product: "",
-        message: "",
-      });
-    } else {
-      alert(data.message || "Something went wrong");
+    e.preventDefault();
+    if (formData.phone.length !== 10) {
+      alert("Phone number must contain exactly 10 digits.");
+      return;
     }
-  } catch (error) {
-    console.error(error);
-    alert("Server error");
-   }
-};
+
+    try {
+      const response = await fetch("http://localhost:5000/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Inquiry submitted successfully!");
+
+        setFormData({
+          name: "",
+          nationality: "",
+          email: "",
+          phone: "",
+          product: "",
+          message: "",
+        });
+      } else {
+        alert(data.message || "Something went wrong");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Server error");
+    }
+  };
 
   return (
     <div
@@ -198,14 +222,14 @@ function Contact() {
               onChange={handleChange}
               style={inputStyle}
             >
-             <option value="">Select Nationality</option>
-             <option value="Indian">Indian</option>
-             <option value="Sri Lankan">Sri Lankan</option>
-             <option value="American">American</option>
-             <option value="British">British</option>
-             <option value="Canadian">Canadian</option>
-             <option value="Australian">Australian</option>
-             <option value="Other">Other</option>
+              <option value="">Select Nationality</option>
+              <option value="Indian">Indian</option>
+              <option value="Sri Lankan">Sri Lankan</option>
+              <option value="American">American</option>
+              <option value="British">British</option>
+              <option value="Canadian">Canadian</option>
+              <option value="Australian">Australian</option>
+              <option value="Other">Other</option>
             </select>
 
             <input
@@ -223,10 +247,10 @@ function Contact() {
               placeholder="Phone Number"
               value={formData.phone}
               onChange={(e) => {
-              const value = e.target.value.replace(/\D/g, "");
-              if (value.length <= 10) {
-                setFormData({ ...formData, phone: value });
-              }
+                const value = e.target.value.replace(/\D/g, "");
+                if (value.length <= 10) {
+                  setFormData({ ...formData, phone: value });
+                }
               }}
               maxLength={10}
               pattern="[0-9]{10}"
@@ -235,14 +259,38 @@ function Contact() {
             />
 
 
-            <input
-              type="text"
+            <select
+              name="category"
+              value={formData.category}
+              onChange={handleChange}
+              style={inputStyle}
+              required
+            >
+              <option value="">Select Product Category</option>
+              {Object.keys(productOptions).map((category) => (
+                <option key={category} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+
+            <select
               name="product"
               value={formData.product}
               onChange={handleChange}
-              placeholder="Product Interested In"
               style={inputStyle}
-            />
+              required
+              disabled={!formData.category}
+            >
+              <option value="">Select Product</option>
+
+              {formData.category &&
+                productOptions[formData.category].map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+            </select>
 
             <textarea
               name="message"
@@ -276,7 +324,7 @@ function Contact() {
 
       </div>
 
-     
+
     </div>
   )
 }
