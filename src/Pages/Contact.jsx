@@ -218,11 +218,19 @@ function Contact() {
             />
 
             <input
-              type="text"
+              type="tel"
               name="phone"
-              value={formData.phone}
-              onChange={handleChange}
               placeholder="Phone Number"
+              value={formData.phone}
+              onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, "");
+              if (value.length <= 10) {
+                setFormData({ ...formData, phone: value });
+              }
+              }}
+              maxLength={10}
+              pattern="[0-9]{10}"
+              required
               style={inputStyle}
             />
 
