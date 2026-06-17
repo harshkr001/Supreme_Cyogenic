@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+
 function AdminDashboard() {
     const [inquiries, setInquiries] = useState([]);
+
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         fetch("http://localhost:5000/api/inquiries")
@@ -95,9 +98,28 @@ function AdminDashboard() {
                     <h3>Resolved</h3>
                     <p>{resolvedCount}</p>
                 </div>
+
+                <input
+                    type="text"
+                    placeholder="Search by name or email..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{
+                        width: "100%",
+                        padding: "10px",
+                        marginBottom: "20px",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px",
+                    }}
+                />
             </div>
 
-            {inquiries.map((item) => (
+            {inquiries.filter((item) => {
+                return (
+                    item.name.toLowerCase().includes(search.toLowerCase()) ||
+                    item.email.toLowerCase().includes(search.toLowerCase())
+                );
+            }).map((item) => (
                 <div
                     key={item._id}
                     style={{
