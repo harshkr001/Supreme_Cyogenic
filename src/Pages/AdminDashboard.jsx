@@ -50,9 +50,52 @@ function AdminDashboard() {
             console.error(error);
         }
     };
+
+    const totalInquiries = inquiries.length;
+
+    const pendingCount = inquiries.filter(
+        (item) => item.status === "Pending"
+    ).length;
+
+    const inProgressCount = inquiries.filter(
+        (item) => item.status === "In Progress"
+    ).length;
+
+    const resolvedCount = inquiries.filter(
+        (item) => item.status === "Resolved"
+    ).length;
     return (
         <div style={{ padding: "20px" }}>
             <h1>Admin Dashboard</h1>
+
+            <div
+                style={{
+                    display: "flex",
+                    gap: "20px",
+                    marginBottom: "20px",
+                    flexWrap: "wrap",
+                }}
+            >
+                <div style={{ border: "1px solid #ccc", padding: "15px" }}>
+                    <h3>Total</h3>
+                    <p>{totalInquiries}</p>
+                </div>
+
+                <div style={{ border: "1px solid #ccc", padding: "15px" }}>
+                    <h3>Pending</h3>
+                    <p>{pendingCount}</p>
+                </div>
+
+                <div style={{ border: "1px solid #ccc", padding: "15px" }}>
+                    <h3>In Progress</h3>
+                    <p>{inProgressCount}</p>
+                </div>
+
+                <div style={{ border: "1px solid #ccc", padding: "15px" }}>
+                    <h3>Resolved</h3>
+                    <p>{resolvedCount}</p>
+                </div>
+            </div>
 
             {inquiries.map((item) => (
                 <div
@@ -81,21 +124,21 @@ function AdminDashboard() {
                         }}
                     >
                         <div>
-                            <span>Status: </span>  
+                            <span>Status: </span>
 
                             <select
-                            value={item.status}
-                            onChange={(e) =>
-                                updateStatus(item._id, e.target.value)
-                            }
-                        >
-                            <option value="Pending">Pending</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Resolved">Resolved</option>
-                        </select>
+                                value={item.status}
+                                onChange={(e) =>
+                                    updateStatus(item._id, e.target.value)
+                                }
+                            >
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Resolved">Resolved</option>
+                            </select>
 
                         </div>
-                    
+
                         <button
                             onClick={() => deleteInquiry(item._id)}
                             style={{
