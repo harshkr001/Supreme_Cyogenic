@@ -15,6 +15,7 @@ import { CheckoutPage } from "./Pages/CheckoutPage";
 import { OrderSuccessPage } from "./Pages/OrderSuccessPage";
 import { CartPage } from "./Pages/CartPage";
 import { CartProvider } from "./Context/CartContext";
+import AdminDashboard from "./Pages/AdminDashboard";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -53,6 +54,8 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
 
           <Route path="/order-success" element={<OrderSuccessPage />} />
+
+          <Route path="/admin" element={<AdminDashboard />} />
 
         </Routes>
 
