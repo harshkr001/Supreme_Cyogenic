@@ -29,4 +29,20 @@ const getAllInquiries = async (req, res) => {
   }
 };
 
-module.exports = { createInquiry, getAllInquiries };
+const updateInquiryStatus = async (req, res) => {
+  try {
+    const inquiry = await Inquiry.findByIdAndUpdate(
+      req.params.id,
+      { status: req.body.status },
+      { new: true }
+    );
+
+    res.status(200).json(inquiry);
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { createInquiry, getAllInquiries, updateInquiryStatus };
