@@ -11,7 +11,7 @@ const inquiryRoutes = require("./routes/inquiryRoutes");
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/inquiry", inquiryRoutes);
+app.use("/api/inquiries", inquiryRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");

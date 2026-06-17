@@ -26,6 +26,12 @@ const inquirySchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+
+    status: {
+      type: String,
+      enum: ["Pending", "In Progress", "Resolved"],
+      default: "Pending",
+    },
   },
   {
     timestamps: true,

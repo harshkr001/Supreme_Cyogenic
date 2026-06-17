@@ -46,7 +46,7 @@ function Contact() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/inquiry", {
+      const response = await fetch("http://localhost:5000/api/inquiries", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
