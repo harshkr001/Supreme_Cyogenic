@@ -44,5 +44,18 @@ const updateInquiryStatus = async (req, res) => {
     });
   }
 };
+const deleteInquiry = async (req, res) => {
+  try {
+    await Inquiry.findByIdAndDelete(req.params.id);
 
-module.exports = { createInquiry, getAllInquiries, updateInquiryStatus };
+    res.status(200).json({
+      message: "Inquiry deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+module.exports = { createInquiry, getAllInquiries, updateInquiryStatus, deleteInquiry };

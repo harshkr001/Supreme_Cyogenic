@@ -34,6 +34,22 @@ function AdminDashboard() {
             console.error(error);
         }
     };
+    const deleteInquiry = async (id) => {
+        try {
+            await fetch(
+                `http://localhost:5000/api/inquiries/${id}`,
+                {
+                    method: "DELETE",
+                }
+            );
+
+            setInquiries((prev) =>
+                prev.filter((item) => item._id !== id)
+            );
+        } catch (error) {
+            console.error(error);
+        }
+    };
     return (
         <div style={{ padding: "20px" }}>
             <h1>Admin Dashboard</h1>
@@ -56,10 +72,18 @@ function AdminDashboard() {
                     <p>
                         Date: {new Date(item.createdAt).toLocaleString()}
                     </p>
-                    <div>
-                        <label>Status: </label>
+                    <div
+                        style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                            marginTop: "15px",
+                        }}
+                    >
+                        <div>
+                            <span>Status: </span>  
 
-                        <select
+                            <select
                             value={item.status}
                             onChange={(e) =>
                                 updateStatus(item._id, e.target.value)
@@ -69,6 +93,23 @@ function AdminDashboard() {
                             <option value="In Progress">In Progress</option>
                             <option value="Resolved">Resolved</option>
                         </select>
+
+                        </div>
+                    
+                        <button
+                            onClick={() => deleteInquiry(item._id)}
+                            style={{
+                                backgroundColor: "red",
+                                color: "white",
+                                border: "none",
+                                borderRadius: "5px",
+                                fontWeight: "bold",
+                                padding: "8px 16px",
+                                cursor: "pointer",
+                            }}
+                        >
+                            Delete
+                        </button>
                     </div>
                 </div>
             ))}
