@@ -16,6 +16,8 @@ import { OrderSuccessPage } from "./Pages/OrderSuccessPage";
 import { CartPage } from "./Pages/CartPage";
 import { CartProvider } from "./Context/CartContext";
 import AdminDashboard from "./Pages/AdminDashboard";
+import AdminLogin from "./Pages/AdminLogin";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -55,7 +57,15 @@ function App() {
 
           <Route path="/order-success" element={<OrderSuccessPage />} />
 
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            } />
+
+          <Route path="/admin-login" element={<AdminLogin />} />
 
         </Routes>
 
