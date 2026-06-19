@@ -4,6 +4,7 @@ import { useCart } from "../Context/CartContext";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
+
 const products = [
   {
     title: "Dry Ice Blocks",
@@ -28,6 +29,7 @@ const products = [
 function Nav({ onAuthClick }) {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
   const { getTotalItems } = useCart();
   const cartCount = getTotalItems();
@@ -443,7 +445,48 @@ function Nav({ onAuthClick }) {
           onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-1px)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
         >
-          {user ? user.name : "TEST USER"}
+          {user ? (
+            <div style={{ position: "relative" }}>
+              <span
+                onClick={() => setUserMenuOpen(!userMenuOpen)}
+                style={{ cursor: "pointer" }}
+              >
+                {user.name} ▼
+              </span>
+
+              {userMenuOpen && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "40px",
+                    right: "0",
+                    background: "#07111F",
+                    border: "1px solid rgba(0,174,239,0.25)",
+                    borderRadius: "12px",
+                    minWidth: "180px",
+                    padding: "8px",
+                    zIndex: 1000,
+                  }}
+                >
+                  <div style={{ padding: "10px" }}>My Profile</div>
+                  <div style={{ padding: "10px" }}>Orders</div>
+                  <div style={{ padding: "10px" }}>Cart</div>
+
+                  <div
+                    style={{ padding: "10px", color: "red", cursor: "pointer" }}
+                    onClick={() => {
+                      localStorage.removeItem("user");
+                      window.location.reload();
+                    }}
+                  >
+                    Logout
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            "Login / Sign Up"
+          )}
         </button>
       </nav>
     </header>
