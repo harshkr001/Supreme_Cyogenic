@@ -2,6 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../Context/CartContext";
 
+const user = JSON.parse(localStorage.getItem("user"));
+
 const products = [
   {
     title: "Dry Ice Blocks",
@@ -31,11 +33,11 @@ function Nav({ onAuthClick }) {
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
   const [updatesTooltipOpen, setUpdatesTooltipOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  
+
   const productsDropdownRef = useRef(null);
   const productsTriggerRef = useRef(null);
   const productsHideTimeout = useRef(null);
-  
+
   const updatesTriggerRef = useRef(null);
 
 
@@ -131,28 +133,28 @@ function Nav({ onAuthClick }) {
         />
         <div>
           <h1
-           style={{
-             margin: "0",
-             color: "#0B2447",
-             fontSize: "34px",
-             fontFamily: "'Montserrat', sans-serif",
-             fontWeight: "800",
-             letterSpacing: "1px",
-           }}
+            style={{
+              margin: "0",
+              color: "#0B2447",
+              fontSize: "34px",
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: "800",
+              letterSpacing: "1px",
+            }}
           >
-          SUPREME
+            SUPREME
           </h1>
           <p
-           style={{
-             margin: "0",
-             color: "#90AEEF",
-             letterSpacing: "8px",
-             fontFamily: "'Montserrat', sans-serif",
-             fontWeight: "500",
-             fontSize: "16px",
-          }}
+            style={{
+              margin: "0",
+              color: "#90AEEF",
+              letterSpacing: "8px",
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: "500",
+              fontSize: "16px",
+            }}
           >
-          CRYOGENIC
+            CRYOGENIC
           </p>
         </div>
       </button>
@@ -325,38 +327,38 @@ function Nav({ onAuthClick }) {
                 minWidth: "450px",
                 padding: "30px",
                 background: "#FFFFFF",
-                
+
                 borderRadius: "24px",
                 boxShadow: "0 15px 40px rgba(0, 0, 0, 0.15)",
                 color: "#111827",
-                
-                
+
+
                 zIndex: 1002,
                 textAlign: "left",
               }}
             >
               <div>
-              <h3
-                style={{
-                  margin: "0 0 15px 0",
-                  fontSize: "24px",
-                  fontWeight: "700",
-                  color: "#111827",
-                }}
-              >
-               Updates
-              </h3>
-               <p
+                <h3
+                  style={{
+                    margin: "0 0 15px 0",
+                    fontSize: "24px",
+                    fontWeight: "700",
+                    color: "#111827",
+                  }}
+                >
+                  Updates
+                </h3>
+                <p
 
-                style={{
-                margin: 0,
-     
-                color: "#6B7280",
-                lineHeight: "1.8",
-                fontSize: "16px",
-               }}
-               >
-                Latest updates, market intelligence, and industry news from Supreme Cryogenic.
+                  style={{
+                    margin: 0,
+
+                    color: "#6B7280",
+                    lineHeight: "1.8",
+                    fontSize: "16px",
+                  }}
+                >
+                  Latest updates, market intelligence, and industry news from Supreme Cryogenic.
                 </p>
               </div>
             </div>
@@ -440,7 +442,7 @@ function Nav({ onAuthClick }) {
           onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-1px)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
         >
-          Login / Sign Up
+          {user ? user.name : "Login / Sign Up"}
         </button>
       </nav>
     </header>

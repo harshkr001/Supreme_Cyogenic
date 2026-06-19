@@ -1,15 +1,18 @@
+
 import { useState } from "react";
 
 export default function LoginForm() {
   const [mode, setMode] = useState("login");
 
   const handleSubmit = async (event) => {
+    console.log("HANDLE SUBMIT RUNNING");
+    alert("HANDLE SUBMIT RUNNING");
     event.preventDefault();
     const form = event.target;
     const email = form.email?.value || "";
     const name = form.name?.value || "";
     const password = form.password?.value || "";
-    
+
     if (mode === "signup") {
       const response = await fetch(
         "http://localhost:5000/api/users/register",
@@ -27,8 +30,42 @@ export default function LoginForm() {
       );
 
       const data = await response.json();
+      alert(JSON.stringify(data));
+      console.log("DATA:", data);
 
       alert(data.message || "Signup Successful");
+    }
+    else {
+      const response = await fetch(
+        "http://localhost:5000/api/users/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log("LOGIN DATA:", data);
+      alert(JSON.stringify(data));
+
+      if (response.ok) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify(data.user)
+        );
+
+        alert("Login Successful");
+        console.log("Saved user:", data.user);
+        console.log("LocalStorage:", localStorage.getItem("user"));
+      } else {
+        alert(data.message);
+      }
     }
   };
 
@@ -97,8 +134,8 @@ export default function LoginForm() {
                     type="button"
                     onClick={() => setMode(tab.key)}
                     className={`rounded-full px-5 py-3 text-sm font-semibold transition ${mode === tab.key
-                        ? "bg-cyan-400 text-slate-950 shadow-sm shadow-cyan-400/20"
-                        : "text-slate-400 hover:text-white"
+                      ? "bg-cyan-400 text-slate-950 shadow-sm shadow-cyan-400/20"
+                      : "text-slate-400 hover:text-white"
                       }`}
                   >
                     {tab.label}

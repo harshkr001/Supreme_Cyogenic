@@ -94,6 +94,10 @@ export default function AuthModal({ isOpen, onClose }) {
                   const form = event.currentTarget;
                   const email = form.email?.value.trim();
                   const name = form.name?.value?.trim();
+                  localStorage.setItem("user", JSON.stringify({
+                     name: name || email,
+                     email: email,
+                  }));
                   onClose();
                   alert(
                     mode === "login"
