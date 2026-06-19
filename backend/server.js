@@ -9,9 +9,12 @@ const app = express();
 
 const inquiryRoutes = require("./routes/inquiryRoutes");
 
+const userRoutes = require("./routes/userRoutes");
+
 app.use(cors());
 app.use(express.json());
 app.use("/api/inquiries", inquiryRoutes);
+app.use("/api/users", userRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");

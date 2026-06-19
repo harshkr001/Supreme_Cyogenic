@@ -3,13 +3,33 @@ import { useState } from "react";
 export default function LoginForm() {
   const [mode, setMode] = useState("login");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email?.value || "";
     const name = form.name?.value || "";
-    const action = mode === "login" ? "signed in" : "signed up";
-    alert(`Success! ${name ? name + ", " : ""}${email} has ${action}.`);
+    const password = form.password?.value || "";
+    
+    if (mode === "signup") {
+      const response = await fetch(
+        "http://localhost:5000/api/users/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      alert(data.message || "Signup Successful");
+    }
   };
 
   return (
@@ -76,11 +96,10 @@ export default function LoginForm() {
                     key={tab.key}
                     type="button"
                     onClick={() => setMode(tab.key)}
-                    className={`rounded-full px-5 py-3 text-sm font-semibold transition ${
-                      mode === tab.key
+                    className={`rounded-full px-5 py-3 text-sm font-semibold transition ${mode === tab.key
                         ? "bg-cyan-400 text-slate-950 shadow-sm shadow-cyan-400/20"
                         : "text-slate-400 hover:text-white"
-                    }`}
+                      }`}
                   >
                     {tab.label}
                   </button>
