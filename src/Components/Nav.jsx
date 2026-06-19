@@ -27,6 +27,7 @@ const products = [
 
 function Nav({ onAuthClick }) {
   const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const location = useLocation();
   const { getTotalItems } = useCart();
   const cartCount = getTotalItems();
@@ -442,7 +443,7 @@ function Nav({ onAuthClick }) {
           onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-1px)")}
           onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
         >
-          {user ? user.name : "Login / Sign Up"}
+          {user ? user.name : "TEST USER"}
         </button>
       </nav>
     </header>
