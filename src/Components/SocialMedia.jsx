@@ -11,22 +11,27 @@ export default function SocialMedia() {
     {
       icon: <FaWhatsapp size={40} />,
       title: "WhatsApp",
+      link: "https://www.whatsapp.com"
     },
     {
       icon: <FaInstagram size={40} />,
       title: "Instagram",
+      link: "https://www.instagram.com"
     },
     {
       icon: <FaFacebook size={40} />,
       title: "Facebook",
+      link: "https://www.facebook.com"
     },
     {
       icon: <FaYoutube size={40} />,
       title: "YouTube",
+      link: "https://www.youtube.com"
     },
     {
       icon: <FaMapMarkerAlt size={40} />,
       title: "Location",
+      link: "https://www.google.com/maps"
     },
   ];
 
@@ -43,11 +48,14 @@ export default function SocialMedia() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
           {socials.map((item, index) => (
-            <div
+            <a
               key={index}
-              className="bg-slate-900 border border-cyan-500/20 rounded-3xl p-6 text-center min-h-[120px]
-               flex flex-col items-center justify-center"
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-slate-900 border border-cyan-500/20 rounded-3xl p-6 text-center min-h-[120px] flex flex-col items-center justify-center hover:-translate-y-2 transition-all duration-300"
             >
+
               <div className="flex justify-center text-cyan-400 mb-4">
                 {item.icon}
               </div>
@@ -55,10 +63,11 @@ export default function SocialMedia() {
               <h3 className="text-white font-semibold text-lg">
                 {item.title}
               </h3>
-            </div>
+
+            </a>
           ))}
-        </div>
       </div>
-    </section>
+    </div>
+    </section >
   );
 }
