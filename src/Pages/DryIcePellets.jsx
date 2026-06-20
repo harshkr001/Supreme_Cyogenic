@@ -12,22 +12,82 @@ function DryIcePellets() {
       id: "pellet-0",
       image: "/pellet1.jpeg",
       title: "Dry Ice Pellets – Industrial Grade",
-      price: "LKR 850 / kg",
-      desc: "High purity dry ice pellets for industrial cleaning and cooling."
+      price: "$ 8.5 / kg",
+      productCode: "DIP-01",
+      availability: "In Stock",
+      deliveryTime: "1-2 Days",
+      rating: "4.8/5",
+      industries: "Food, Cleaning",
+      quoteOnly: false,
+      desc: "High purity dry ice pellets for industrial cleaning and cooling.",
+
+      specifications: [
+        "Diameter: 3mm",
+        "Purity: 99.9% CO₂",
+        "Industrial Grade",
+        "Fast Sublimation"
+      ],
+
+      applications: [
+        "Dry Ice Blasting",
+        "Machine Cleaning",
+        "Industrial Cooling",
+        "Surface Preparation"
+      ]
     },
     {
       id: "pellet-1",
       image: "/pellet2.jpeg",
       title: "Premium Dry Ice Pellets",
-      price: "LKR 950 / kg",
-      desc: "Suitable for cryogenic applications and food transport."
+      price: "$ 9.5 / kg",
+      productCode: "PDP-02",
+      availability: "In Stock",
+      deliveryTime: "2-3 Days",
+      rating: "4.9/5",
+      industries: "Cryogenic, Pharma",
+      quoteOnly: false,
+      desc: "Suitable for cryogenic applications and food transport.",
+
+      specifications: [
+        "Diameter: 6mm",
+        "Purity: 99.9% CO₂",
+        "Premium Grade",
+        "Long Cooling Time"
+      ],
+
+      applications: [
+        "Food Transport",
+        "Pharmaceutical Storage",
+        "Cryogenic Processing",
+        "Cold Rooms"
+      ]
     },
     {
       id: "pellet-2",
       image: "/pellet3.jpeg",
       title: "Bulk Dry Ice Pellets",
       price: "Custom Quote",
-      desc: "Large quantity supply for industrial operations."
+      productCode: "BDP-03",
+      availability: "Custom Order",
+      deliveryTime: "5-7 Days",
+      rating: "4.7/5",
+      industries: "Industrial, Manufacturing",
+      quoteOnly: true,
+      desc: "Large quantity supply for industrial operations.",
+
+      specifications: [
+        "Bulk Quantity",
+        "Custom Sizes",
+        "Industrial Grade",
+        "Export Ready"
+      ],
+
+      applications: [
+        "Large Scale Logistics",
+        "Manufacturing Plants",
+        "Export Shipments",
+        "Bulk Distribution"
+      ]
     }
   ];
 
@@ -119,67 +179,128 @@ function DryIcePellets() {
             <h3 style={{ color: "#00BFFF" }}>
               {item.price}
             </h3>
+            <p>Code: {item.productCode}</p>
+
+            <h3 style={{ color: "#00BFFF" }}>
+              {item.price}
+            </h3>
+
+            <p style={{ color: item.quoteOnly ? "orange" : "limegreen" }}>
+              ● {item.availability}
+            </p>
+
+            <p style={{ color: "#CBD6E5" }}>
+              Delivery: {item.deliveryTime}
+            </p>
+
+            <p style={{ color: "#FFD700" }}>
+              ⭐ {item.rating}
+            </p>
+
+            <p style={{ color: "#CBD6E5" }}>
+              Industries: {item.industries}
+            </p>
 
             <p>{item.desc}</p>
-            
+
+            <h4 style={{ color: "#00BFFF", marginTop: "15px" }}>
+              Specifications
+            </h4>
+
+            <ul style={{ color: "#CBD6E5", lineHeight: "26px" }}>
+              {item.specifications?.map((spec, i) => (
+                <li key={i}>{spec}</li>
+              ))}
+            </ul>
+
+            <h4 style={{ color: "#00BFFF", marginTop: "15px" }}>
+              Applications
+            </h4>
+
+            <ul style={{ color: "#CBD6E5", lineHeight: "26px" }}>
+              {item.applications?.map((app, i) => (
+                <li key={i}>{app}</li>
+              ))}
+            </ul>
+
             <div style={{ display: "flex", gap: "10px", marginTop: "20px", alignItems: "center" }}>
-              <input 
-                id={`qty-pellet-${index}`} 
-                type="number" 
-                min={1} 
-                defaultValue={1} 
-                style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #243644", background: "#07121a", color: "white" }} 
+              <input
+                id={`qty-pellet-${index}`}
+                type="number"
+                min={1}
+                defaultValue={1}
+                style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #243644", background: "#07121a", color: "white" }}
               />
-              
-              <button
-                onClick={() => {
-                  const el = document.getElementById(`qty-pellet-${index}`);
-                  const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                  handleAddToCart(item, qty);
-                }}
-                style={{ 
-                  flex: 1, 
-                  padding: "12px", 
-                  background: "#00BFFF", 
-                  border: "none", 
-                  borderRadius: "10px", 
-                  color: "white",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  transition: "opacity 0.2s ease"
-                }}
-                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-              >
-                Add to Cart
-              </button>
-              
-              <button 
-                style={{ 
-                  flex: 1, 
-                  padding: "12px", 
-                  background: "transparent", 
-                  border: "2px solid #00BFFF", 
-                  borderRadius: "10px", 
-                  color: "#00BFFF",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease"
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "rgba(0, 191, 255, 0.1)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "transparent";
-                }}
-                onClick={() => {
-                  const el = document.getElementById(`qty-pellet-${index}`);
-                  const qty = Math.max(1, parseInt(el?.value || "1", 10));
-                  handleBuyNow(item, qty);
-                }}
-              >
-                Buy Now
-              </button>
+
+              {!item.quoteOnly && (
+                <button
+                  onClick={() => {
+                    const el = document.getElementById(`qty-pellet-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    handleAddToCart(item, qty);
+                  }}
+                  style={{
+                    flex: 1,
+                    padding: "12px",
+                    background: "#00BFFF",
+                    border: "none",
+                    borderRadius: "10px",
+                    color: "white",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    transition: "opacity 0.2s ease"
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  Add to Cart
+                </button>
+              )}
+
+              {!item.quoteOnly && (
+                <button
+                  style={{
+                    flex: 1,
+                    padding: "12px",
+                    background: "transparent",
+                    border: "2px solid #00BFFF",
+                    borderRadius: "10px",
+                    color: "#00BFFF",
+                    fontWeight: "bold",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease"
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(0, 191, 255, 0.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "transparent";
+                  }}
+                  onClick={() => {
+                    const el = document.getElementById(`qty-pellet-${index}`);
+                    const qty = Math.max(1, parseInt(el?.value || "1", 10));
+                    handleBuyNow(item, qty);
+                  }}
+                >
+                  Buy Now
+                </button>
+              )}
+
+              {item.quoteOnly && (
+                <button
+                  style={{
+                    background: "transparent",
+                    border: "1px solid #00BFFF",
+                    color: "#00BFFF",
+                    padding: "10px 20px",
+                    borderRadius: "10px",
+                    cursor: "pointer"
+                  }}
+                >
+                  📄 Request Quote
+
+                </button>
+              )}
             </div>
           </div>
         ))}
