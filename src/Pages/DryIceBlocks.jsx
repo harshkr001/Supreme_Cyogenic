@@ -13,22 +13,64 @@ function DryIceBlocks() {
       image: "/block1.jpeg",
       title: "Industrial Dry Ice Blocks",
       price: "LKR 1200 / 5kg",
-      desc: "High quality dry ice blocks for industrial cooling and transport."
+      desc: "High quality dry ice blocks for industrial cooling and transport.",
+
+      specifications: [
+        "Temperature: -78.5°C",
+        "Purity: 99.9% CO₂",
+        "Weight: 5kg",
+        "Industrial Grade"
+      ],
+
+      applications: [
+        "Cold Chain Logistics",
+        "Food Transportation",
+        "Industrial Cooling",
+        "Event Effects"
+      ]
     },
     {
       id: "block-1",
       image: "/block2.jpeg",
       title: "Premium Cooling Blocks",
       price: "LKR 2200 / 10kg",
-      desc: "Long-lasting cooling blocks suitable for storage applications."
+      desc: "Long-lasting cooling blocks suitable for storage applications.",
+
+      specifications: [
+        "Temperature: -78.5°C",
+        "Purity: 99.9% CO₂",
+        "Weight: 10kg",
+        "Extended Cooling Time"
+      ],
+
+      applications: [
+        "Pharmaceutical Storage",
+        "Medical Transport",
+        "Laboratories",
+        "Cold Rooms"
+      ]
     },
     {
       id: "block-2",
       image: "/block3.jpeg",
       title: "Bulk Dry Ice Blocks",
       price: "Custom Pricing",
-      desc: "Bulk supply solutions for industrial and commercial operations."
-    }
+      desc: "Bulk supply solutions for industrial and commercial operations.",
+
+      specifications: [
+        "Temperature: -78.5°C",
+        "Bulk Quantity",
+        "Custom Sizes",
+        "Industrial Grade"
+      ],
+
+      applications: [
+        "Large Scale Logistics",
+        "Food Processing Plants",
+        "Manufacturing Units",
+        "Export Shipments"
+      ]
+    },
   ];
 
   const showNotification = (message) => {
@@ -51,10 +93,10 @@ function DryIceBlocks() {
   return (
     <div
       style={{
-        padding:"120px 50px",
-        minHeight:"100vh",
-        background:"#07111d",
-        color:"white"
+        padding: "120px 50px",
+        minHeight: "100vh",
+        background: "#07111d",
+        color: "white"
       }}
     >
 
@@ -77,10 +119,10 @@ function DryIceBlocks() {
 
       <h1
         style={{
-          textAlign:"center",
-          fontSize:"55px",
-          marginBottom:"20px",
-          color:"#00BFFF"
+          textAlign: "center",
+          fontSize: "55px",
+          marginBottom: "20px",
+          color: "#00BFFF"
         }}
       >
         Dry Ice Blocks
@@ -88,10 +130,10 @@ function DryIceBlocks() {
 
       <p
         style={{
-          textAlign:"center",
-          color:"#C8D6E5",
-          marginBottom:"60px",
-          fontSize:"18px"
+          textAlign: "center",
+          color: "#C8D6E5",
+          marginBottom: "60px",
+          fontSize: "18px"
         }}
       >
         Premium industrial cooling solutions for storage and transportation.
@@ -99,23 +141,24 @@ function DryIceBlocks() {
 
       <div
         style={{
-          display:"grid",
+          display: "grid",
           gridTemplateColumns:
-          "repeat(auto-fit,minmax(320px,1fr))",
-          gap:"30px"
+            "repeat(auto-fit,minmax(320px,1fr))",
+          gap: "30px"
         }}
       >
 
-        {products.map((item, index)=>(
+        {products.map((item, index) => (
 
           <div
             key={index}
             style={{
-              background:"#111a25",
-              borderRadius:"22px",
-              overflow:"hidden",
-              padding:"20px",
-              transition:"0.3s"
+              background: "#111a25",
+              borderRadius: "22px",
+              overflow: "hidden",
+              padding: "20px",
+              transition: "0.3s",
+              minHeight: "700px",
             }}
           >
 
@@ -127,19 +170,40 @@ function DryIceBlocks() {
               />
             </div>
 
-            <h2 style={{marginTop:"20px"}}>
+            <h2 style={{ marginTop: "20px" }}>
               {item.title}
             </h2>
-
-            <h3 style={{color:"#00BFFF"}}>
+            <h3 style={{ color: "#00BFFF" }}>
               {item.price}
             </h3>
 
-            <p style={{color:"#C8D6E5"}}>
+            <p style={{ color: "#CBD6E5" }}>
               {item.desc}
             </p>
 
+            <h4 style={{ color: "#00BFFF", marginTop: "20px" }}>
+              Specifications
+            </h4>
+
+            <ul style={{ color: "#CBD6E5", lineHeight: "28px" }}>
+              {item.specifications.map((spec, i) => (
+                <li key={i}>{spec}</li>
+              ))}
+            </ul>
+
+            <h4 style={{ color: "#00BFFF", marginTop: "20px" }}>
+              Applications
+            </h4>
+
+            <ul style={{ color: "#CBD6E5", lineHeight: "28px" }}>
+              {item.applications.map((app, i) => (
+                <li key={i}>{app}</li>
+              ))}
+            </ul>
+
             <div style={{ display: "flex", gap: "12px", marginTop: "20px", alignItems: "center" }}>
+
+
               <input
                 type="number"
                 min={1}
@@ -155,14 +219,14 @@ function DryIceBlocks() {
                   handleAddToCart(item, qty);
                 }}
                 style={{
-                  flex:1,
-                  padding:"12px",
-                  background:"#00BFFF",
-                  border:"none",
-                  borderRadius:"10px",
-                  color:"white",
-                  fontWeight:"bold",
-                  cursor:"pointer",
+                  flex: 1,
+                  padding: "12px",
+                  background: "#00BFFF",
+                  border: "none",
+                  borderRadius: "10px",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
                   transition: "opacity 0.2s ease"
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
@@ -173,14 +237,14 @@ function DryIceBlocks() {
 
               <button
                 style={{
-                  flex:1,
-                  padding:"12px",
-                  background:"transparent",
-                  border:"2px solid #00BFFF",
-                  borderRadius:"10px",
-                  color:"#00BFFF",
-                  fontWeight:"bold",
-                  cursor:"pointer",
+                  flex: 1,
+                  padding: "12px",
+                  background: "transparent",
+                  border: "2px solid #00BFFF",
+                  borderRadius: "10px",
+                  color: "#00BFFF",
+                  fontWeight: "bold",
+                  cursor: "pointer",
                   transition: "all 0.2s ease"
                 }}
                 onMouseEnter={(e) => {

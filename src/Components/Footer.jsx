@@ -8,7 +8,8 @@ function Footer() {
           "linear-gradient(180deg,#07101c,#0b1727)",
         color: "white",
         padding: "70px 60px 30px",
-        marginTop: "-5px",
+        marginTop: "0px",
+        
         borderTop: "1px solid rgba(255,255,255,0.08)"
       }}
     >
