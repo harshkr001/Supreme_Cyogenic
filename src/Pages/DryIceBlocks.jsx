@@ -12,7 +12,8 @@ function DryIceBlocks() {
       id: "block-0",
       image: "/block1.jpeg",
       title: "Industrial Dry Ice Blocks",
-      price: "LKR 1200 / 5kg",
+      price: "$ 12 / 5kg",
+      productCode: "DIB-05",
       desc: "High quality dry ice blocks for industrial cooling and transport.",
 
       specifications: [
@@ -33,7 +34,8 @@ function DryIceBlocks() {
       id: "block-1",
       image: "/block2.jpeg",
       title: "Premium Cooling Blocks",
-      price: "LKR 2200 / 10kg",
+      price: "$ 22 / 10kg",
+      productCode: "PCB-10",
       desc: "Long-lasting cooling blocks suitable for storage applications.",
 
       specifications: [
@@ -55,6 +57,7 @@ function DryIceBlocks() {
       image: "/block3.jpeg",
       title: "Bulk Dry Ice Blocks",
       price: "Custom Pricing",
+      productCode: "BDB-01",
       desc: "Bulk supply solutions for industrial and commercial operations.",
 
       specifications: [
@@ -173,6 +176,15 @@ function DryIceBlocks() {
             <h2 style={{ marginTop: "20px" }}>
               {item.title}
             </h2>
+
+            <p style={{
+              color: "#94a3b8",
+              fontSize: "14px",
+              marginBottom: "10px"
+            }}
+            >
+              Code: {item.productCode}
+            </p>
             <h3 style={{ color: "#00BFFF" }}>
               {item.price}
             </h3>
