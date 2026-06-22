@@ -17,6 +17,7 @@ import { CartPage } from "./Pages/CartPage";
 import { CartProvider } from "./Context/CartContext";
 import AdminDashboard from "./Pages/AdminDashboard";
 import AdminLogin from "./Pages/AdminLogin";
+import Profile from "./Pages/Profile";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -56,6 +57,8 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
 
           <Route path="/order-success" element={<OrderSuccessPage />} />
+
+          <Route path="/profile" element={<Profile />} />
 
           <Route
             path="/admin"

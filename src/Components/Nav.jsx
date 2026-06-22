@@ -468,7 +468,12 @@ function Nav({ onAuthClick }) {
                     zIndex: 1000,
                   }}
                 >
-                  <div style={{ padding: "10px" }}>My Profile</div>
+                  <Link
+                    to="/profile"
+                    style={{ padding: "10px", display: "block", color: "white", textDecoration: "none" }}
+                  >
+                    Profile
+                  </Link>
                   <div style={{ padding: "10px" }}>Orders</div>
                   <div style={{ padding: "10px" }}>Cart</div>
 
