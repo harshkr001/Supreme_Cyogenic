@@ -72,7 +72,11 @@ function App() {
 
         </Routes>
 
-        <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+        {!localStorage.getItem("user")&& (
+           <AuthModal isOpen={isAuthOpen} onClose={() => setIsAuthOpen(false)} />
+        )}
+
+       
 
         <Footer />
       </CartProvider>
