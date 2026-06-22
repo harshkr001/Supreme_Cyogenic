@@ -17,7 +17,7 @@ function DryIcePellets() {
       availability: "In Stock",
       deliveryTime: "1-2 Days",
       rating: "4.8/5",
-      industries: "Food, Cleaning",
+      reviews: "157 Reviews",
       quoteOnly: false,
       desc: "High purity dry ice pellets for industrial cleaning and cooling.",
 
@@ -33,6 +33,13 @@ function DryIcePellets() {
         "Machine Cleaning",
         "Industrial Cooling",
         "Surface Preparation"
+      ],
+
+      industries: [
+        "Food & Beverage",
+        "Industrial Cleaning",
+        "Cold Chain Logistics",
+        "Manufacturing"
       ]
     },
     {
@@ -44,7 +51,7 @@ function DryIcePellets() {
       availability: "In Stock",
       deliveryTime: "2-3 Days",
       rating: "4.9/5",
-      industries: "Cryogenic, Pharma",
+      reviews: "110 Reviews",
       quoteOnly: false,
       desc: "Suitable for cryogenic applications and food transport.",
 
@@ -60,6 +67,12 @@ function DryIcePellets() {
         "Pharmaceutical Storage",
         "Cryogenic Processing",
         "Cold Rooms"
+      ],
+      industries: [
+        "Pharmaceuticals",
+        "Biotech",
+        "Cryogenic Processing",
+        "Food Transport"
       ]
     },
     {
@@ -71,7 +84,7 @@ function DryIcePellets() {
       availability: "Custom Order",
       deliveryTime: "5-7 Days",
       rating: "4.7/5",
-      industries: "Industrial, Manufacturing",
+      reviews: "120 Reviews",
       quoteOnly: true,
       desc: "Large quantity supply for industrial operations.",
 
@@ -87,6 +100,13 @@ function DryIcePellets() {
         "Manufacturing Plants",
         "Export Shipments",
         "Bulk Distribution"
+      ],
+
+      industries: [
+        "Large Warehouses",
+        "Export Companies",
+        "Industrial Plants",
+        "Logistics Hubs"
       ]
     }
   ];
@@ -176,9 +196,6 @@ function DryIcePellets() {
 
             <h2>{item.title}</h2>
 
-            <h3 style={{ color: "#00BFFF" }}>
-              {item.price}
-            </h3>
             <p>Code: {item.productCode}</p>
 
             <h3 style={{ color: "#00BFFF" }}>
@@ -190,15 +207,21 @@ function DryIcePellets() {
             </p>
 
             <p style={{ color: "#CBD6E5" }}>
-              Delivery: {item.deliveryTime}
+              🚚 Delivery: {item.deliveryTime}
             </p>
 
             <p style={{ color: "#FFD700" }}>
               ⭐ {item.rating}
             </p>
 
-            <p style={{ color: "#CBD6E5" }}>
-              Industries: {item.industries}
+            <p
+              style={{
+                color: "#CBD6E5",
+                fontSize: "14px",
+                marginBottom: "15px"
+              }}
+            >
+              {item.reviews}
             </p>
 
             <p>{item.desc}</p>
@@ -223,6 +246,16 @@ function DryIcePellets() {
               ))}
             </ul>
 
+            <h4 style={{ color: "#00BFFF", marginTop: "15px" }}>
+              Industries Served
+            </h4>
+
+            <ul style={{ color: "#CBD6E5", lineHeight: "26px" }}>
+              {item.industries?.map((industry, i) => (
+                <li key={i}>{industry}</li>
+              ))}
+            </ul>
+
             <div style={{ display: "flex", gap: "10px", marginTop: "20px", alignItems: "center" }}>
               <input
                 id={`qty-pellet-${index}`}
@@ -232,7 +265,7 @@ function DryIcePellets() {
                 style={{ width: 90, padding: "10px", borderRadius: 8, border: "1px solid #243644", background: "#07121a", color: "white" }}
               />
 
-              {!item.quoteOnly && (
+              {item.quoteOnly && (
                 <button
                   onClick={() => {
                     const el = document.getElementById(`qty-pellet-${index}`);
