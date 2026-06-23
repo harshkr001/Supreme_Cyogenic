@@ -11,20 +11,11 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    const savedCart = localStorage.getItem('supremeCryogenic_cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [checkoutData, setCheckoutData] = useState(null);
-
-  // Load cart from localStorage on mount
-  useEffect(() => {
-    try {
-      const savedCart = localStorage.getItem('supremeCryogenic_cart');
-      if (savedCart) {
-        setCartItems(JSON.parse(savedCart));
-      }
-    } catch (error) {
-      console.error('Error loading cart from localStorage:', error);
-    }
-  }, []);
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
@@ -32,6 +23,7 @@ export const CartProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (product, quantity) => {
+    console.log("Adding to cart:", product);
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === product.id);
       if (existingItem) {

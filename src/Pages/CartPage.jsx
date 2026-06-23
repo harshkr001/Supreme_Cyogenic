@@ -5,6 +5,7 @@ import { useState } from 'react';
 export const CartPage = () => {
   const navigate = useNavigate();
   const { cartItems, removeFromCart, updateQuantity, getTotalPrice } = useCart();
+  console.log("CartPage items:", cartItems);
   const [showNotification, setShowNotification] = useState('');
 
   const handleQuantityChange = (productId, newQuantity) => {

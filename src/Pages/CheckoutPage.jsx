@@ -20,16 +20,16 @@ export const CheckoutPage = () => {
 
   const [formData, setFormData] = useState(
     savedDetails || {
-    fullName: user?.name || "",
-    email: user?.email || "",
-    phone: user?.phone || "",
-    company: user?.company || "",
-    address: user?.address || "",
-    city: user?.city || "",
-    state: user?.state || "",
-    country: user?.country || "",
-    postalCode: user?.postalCode || "",
-  });
+      fullName: user?.name || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
+      company: user?.company || "",
+      address: user?.address || "",
+      city: user?.city || "",
+      state: user?.state || "",
+      country: user?.country || "",
+      postalCode: user?.postalCode || "",
+    });
 
   const [errors, setErrors] = useState({});
 
@@ -49,9 +49,36 @@ export const CheckoutPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    if (name === "postalCode" && value.length === 6) {
+      try {
+        const response = await fetch(
+          `https://api.zippopotam.us/in/${value}`
+        );
+
+        const data = await response.json();
+
+        if (data.places && data.places.length > 0) {
+          setFormData((prev) => ({
+            ...prev,
+            postalCode: value,
+            city: data.places[0]["place name"],
+            state: data.places[0]["state"],
+            country: data.country,
+          }));
+        }
+      } catch (error) {
+        console.log("Invalid PIN Code");
+      }
+    }
+
     if (errors[name]) {
       setErrors((prev) => {
         const newErrors = { ...prev };
@@ -77,7 +104,7 @@ export const CheckoutPage = () => {
       const total = subtotal * 1.18;
 
       localStorage.setItem(
-        "customerDetails" ,
+        "customerDetails",
         JSON.stringify(formData)
       );
 
@@ -282,6 +309,7 @@ export const CheckoutPage = () => {
                   name="city"
                   value={formData.city}
                   onChange={handleInputChange}
+                  readOnly
                   placeholder="New York"
                   style={{
                     ...inputStyle,
@@ -298,6 +326,7 @@ export const CheckoutPage = () => {
                   name="state"
                   value={formData.state}
                   onChange={handleInputChange}
+                  readOnly
                   placeholder="NY"
                   style={{
                     ...inputStyle,
@@ -314,6 +343,7 @@ export const CheckoutPage = () => {
                   name="country"
                   value={formData.country}
                   onChange={handleInputChange}
+                  readOnly
                   placeholder="United States"
                   style={{
                     ...inputStyle,
