@@ -2,9 +2,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../Context/CartContext";
 
-const user = JSON.parse(localStorage.getItem("user"));
-
-
 const products = [
   {
     title: "Dry Ice Blocks",
@@ -27,6 +24,8 @@ const products = [
 ];
 
 function Nav({ onAuthClick }) {
+
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [userMenuOpen, setUserMenuOpen] = useState(false);
@@ -479,10 +478,7 @@ function Nav({ onAuthClick }) {
 
                   <div
                     style={{ padding: "10px", color: "red", cursor: "pointer" }}
-                    onClick={() => {
-                      localStorage.removeItem("user");
-                      window.location.reload();
-                    }}
+                    onClick={() => setShowLogoutModal(true)}
                   >
                     Logout
                   </div>
@@ -493,6 +489,80 @@ function Nav({ onAuthClick }) {
             "Login / Sign Up"
           )}
         </button>
+        {showLogoutModal && (
+          <div
+            style={{
+              position: "fixed",
+              top: "0",
+              left: "0",
+              right: "0",
+              bottom: "0",
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 99999,
+              background: "rgba(0,0,0,0.7)",
+              boreder: "2px solid red"
+            }}
+          >
+            <div
+              style={{
+                background: "#07182d",
+                padding: "30px",
+                borderRadius: "15px",
+                minWidth: "350px",
+                textAlign: "center",
+                border: "1px solid #00d4ff",
+              }}
+            >
+
+              <p style={{ color: "#ccc" }}>
+                Are you sure you want to logout?
+              </p>
+
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  gap: "15px",
+                  marginTop: "20px",
+                }}
+              >
+                <button
+                  onClick={() => setShowLogoutModal(false)}
+                  style={{
+                    padding: "10px 20px",
+                    background: "#00d4ff",
+                    border: "none",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Stay Logged In
+                </button>
+
+                <button
+                  onClick={() => {
+                    localStorage.removeItem("user");
+                    window.location.reload();
+                  }}
+                  style={{
+                    padding: "10px 20px",
+                    background: "red",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
     </header>
   );
