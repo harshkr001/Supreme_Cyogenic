@@ -12,16 +12,23 @@ export const CheckoutPage = () => {
 
   const [loading, setLoading] = useState(false);
   const [selectedPayment, setSelectedPayment] = useState('');
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    company: '',
-    billingAddress: '',
-    city: '',
-    state: '',
-    country: '',
-    postalCode: '',
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const savedDetails = JSON.parse(
+    localStorage.getItem("customerDetails")
+  );
+
+  const [formData, setFormData] = useState(
+    savedDetails || {
+    fullName: user?.name || "",
+    email: user?.email || "",
+    phone: user?.phone || "",
+    company: user?.company || "",
+    address: user?.address || "",
+    city: user?.city || "",
+    state: user?.state || "",
+    country: user?.country || "",
+    postalCode: user?.postalCode || "",
   });
 
   const [errors, setErrors] = useState({});
@@ -61,13 +68,18 @@ export const CheckoutPage = () => {
     // Simulate API call
     setTimeout(() => {
       const orderId = `ORD-${Date.now().toString().slice(-6).toUpperCase()}-${Math.random().toString(36).substr(2, 5).toUpperCase()}`;
-      
+
       // Calculate total
       const subtotal = items.reduce((sum, item) => {
         const price = parseFloat(item.price.split(' ')[1] || '0');
         return sum + price * item.quantity;
       }, 0);
       const total = subtotal * 1.18;
+
+      localStorage.setItem(
+        "customerDetails" ,
+        JSON.stringify(formData)
+      );
 
       setCheckout({
         orderId,

@@ -182,7 +182,7 @@ export const CartPage = () => {
                     color: '#C8D6E5',
                     fontSize: '14px',
                   }}>
-                    Price: <span style={{ color: '#00AEEF', fontWeight: '600' }}>LKR {price.toFixed(2)}</span>
+                    Price: <span style={{ color: '#00AEEF', fontWeight: '600' }}>$ {price.toFixed(2)}</span>
                   </p>
 
                   {/* Quantity Controls */}
@@ -269,7 +269,7 @@ export const CartPage = () => {
                         fontWeight: '700',
                         fontSize: '16px',
                       }}>
-                        LKR {itemTotal.toFixed(2)}
+                        $ {itemTotal.toFixed(2)}
                       </p>
                     </div>
 
@@ -331,7 +331,7 @@ export const CartPage = () => {
               marginBottom: '12px',
             }}>
               <span style={{ color: '#C8D6E5' }}>Subtotal</span>
-              <span style={{ color: '#fff', fontWeight: '600' }}>LKR {subtotal.toFixed(2)}</span>
+              <span style={{ color: '#fff', fontWeight: '600' }}>$ {subtotal.toFixed(2)}</span>
             </div>
             <div style={{
               display: 'flex',
@@ -340,7 +340,7 @@ export const CartPage = () => {
               borderBottom: '1px solid rgba(0, 174, 239, 0.3)',
             }}>
               <span style={{ color: '#C8D6E5' }}>Tax (18%)</span>
-              <span style={{ color: '#fff', fontWeight: '600' }}>LKR {tax.toFixed(2)}</span>
+              <span style={{ color: '#fff', fontWeight: '600' }}>$ {tax.toFixed(2)}</span>
             </div>
           </div>
 
@@ -352,7 +352,7 @@ export const CartPage = () => {
             paddingTop: '12px',
           }}>
             <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '16px' }}>Total</span>
-            <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '18px' }}>LKR {total.toFixed(2)}</span>
+            <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '18px' }}>$ {total.toFixed(2)}</span>
           </div>
 
           <div style={{ display: 'grid', gap: '12px' }}>
