@@ -473,7 +473,17 @@ function Nav({ onAuthClick }) {
                   >
                     Profile
                   </Link>
-                  <div style={{ padding: "10px" }}>Orders</div>
+                  <Link
+                    to="/orders"
+                    style={{
+                      padding: "10px",
+                      display: "block",
+                      color: "white",
+                      textDecoration: "none",
+                    }}
+                  >
+                    Orders
+                  </Link>
                   <div style={{ padding: "10px" }}>Cart</div>
 
                   <div
