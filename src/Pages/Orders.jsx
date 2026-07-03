@@ -43,7 +43,7 @@ export default function Orders() {
           and CO₂ Solutions.
         </p>
 
-        <Link to="/products">
+        <a href="/#products">
           <button
             style={{
               padding: "12px 30px",
@@ -57,7 +57,7 @@ export default function Orders() {
           >
             Browse Products
           </button>
-        </Link>
+        </a>
       </div>
     </div>
   );

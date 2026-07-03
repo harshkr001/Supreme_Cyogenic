@@ -43,7 +43,7 @@ const products = [
     id: "co2-1",
     image: "/co2b.jpeg",
     title: "Beverage Grade CO₂",
-    price: "LKR 4500 / Cylinder",
+    price: "$ 45 / Cylinder",
     productCode: "BCO2-02",
     availability: "In Stock",
     deliveryTime: "1-3 Days",

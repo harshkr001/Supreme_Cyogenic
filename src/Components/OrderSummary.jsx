@@ -53,8 +53,8 @@ export const OrderSummary = ({ items, paymentMethod }) => {
                 <span style={{ color: '#C8D6E5', fontSize: '14px' }}>x{item.quantity}</span>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ color: '#C8D6E5', fontSize: '14px' }}>LKR {price.toFixed(2)}</span>
-                <span style={{ color: '#00AEEF', fontWeight: '600' }}>LKR {itemTotal.toFixed(2)}</span>
+                <span style={{ color: '#C8D6E5', fontSize: '14px' }}>$ {price.toFixed(2)}</span>
+                <span style={{ color: '#00AEEF', fontWeight: '600' }}>$ {itemTotal.toFixed(2)}</span>
               </div>
             </div>
           );
@@ -68,11 +68,11 @@ export const OrderSummary = ({ items, paymentMethod }) => {
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
           <span style={{ color: '#C8D6E5' }}>Subtotal</span>
-          <span style={{ color: '#fff' }}>LKR {subtotal.toFixed(2)}</span>
+          <span style={{ color: '#fff' }}>$ {subtotal.toFixed(2)}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
           <span style={{ color: '#C8D6E5' }}>Tax (18%)</span>
-          <span style={{ color: '#fff' }}>LKR {tax.toFixed(2)}</span>
+          <span style={{ color: '#fff' }}>$ {tax.toFixed(2)}</span>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ export const OrderSummary = ({ items, paymentMethod }) => {
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '16px' }}>Total</span>
-          <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '18px' }}>LKR {total.toFixed(2)}</span>
+          <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '18px' }}>$ {total.toFixed(2)}</span>
         </div>
       </div>
 

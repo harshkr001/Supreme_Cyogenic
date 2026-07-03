@@ -118,7 +118,7 @@ export const OrderSuccess = ({ orderId, items, total, paymentMethod }) => {
                 <p style={{ color: '#C8D6E5', fontSize: '12px', margin: '4px 0 0 0' }}>Qty: {item.quantity}</p>
               </div>
               <p style={{ color: '#00AEEF', fontWeight: '600', margin: 0 }}>
-                LKR {(parseFloat(item.price.split(' ')[1] || '0') * item.quantity).toFixed(2)}
+                $ {(parseFloat(item.price.split(' ')[1] || '0') * item.quantity).toFixed(2)}
               </p>
             </div>
           ))}
@@ -131,7 +131,7 @@ export const OrderSuccess = ({ orderId, items, total, paymentMethod }) => {
           }}>
             <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '16px' }}>Total:</span>
             <span style={{ color: '#00AEEF', fontWeight: '700', fontSize: '18px' }}>
-              LKR {total?.toFixed(2) || '0.00'}
+              $ {total?.toFixed(2) || '0.00'}
             </span>
           </div>
         </div>
