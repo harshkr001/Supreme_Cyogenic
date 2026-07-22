@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import fastDeliveryImg from "../assets/fleet1.png";
+import supportImg from "../assets/24:7support.png";
+
 
 const heading = "Why Choose SUPREME CRYOGENIC?";
 
@@ -53,7 +55,7 @@ function Features() {
             title: "24/7 Support",
             desc: "Round-the-clock assistance for critical operations",
             fullDesc: "Our dedicated support team is available around the clock to assist with product inquiries, orders, technical guidance, and emergency requirements, ensuring complete customer satisfaction.",
-            icon: "📞"
+            icon: supportImg
         },
 
     ]
@@ -124,7 +126,8 @@ function Features() {
 
                         }}>
                         <div style={{ fontSize: "34px", marginBottom: "12px" }}>
-                            {f.title === "Fast Delivery" ? (
+                            {f.title === "Fast Delivery" || 
+                            f.title == "24/7 Support" ? (
                                 <img
                                     src={f.icon}
                                     alt={f.title}
