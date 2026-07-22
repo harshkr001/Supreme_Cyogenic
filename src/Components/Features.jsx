@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import fastDeliveryImg from "../assets/fleet1.png";
 
 const heading = "Why Choose SUPREME CRYOGENIC?";
 
-function Features(){
+function Features() {
 
     const [hoveredCard, setHoveredCard] = useState(null);
     const [mobileTooltip, setMobileTooltip] = useState(null);
@@ -21,40 +22,40 @@ function Features(){
 
     const cardVariants = {
         hidden: { opacity: 0, y: 40 },
-        show: { opacity: 1, y: 0,},
+        show: { opacity: 1, y: 0, },
     };
 
     const tooltipVariants = {
         hidden: { opacity: 0, y: 10 },
         show: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut", }, },
-        
+
     };
     const Features = [
-        { 
-            title: "Premium Quality", 
+        {
+            title: "Premium Quality",
             desc: "High-purity dry ice products for industrial use",
             fullDesc: "We manufacture high-purity dry ice products using advanced production processes and strict quality standards. Every product is tested to ensure consistent performance, maximum cooling efficiency, and safe industrial usage.",
-            icon: "❄️" 
+            icon: "❄️"
         },
-        { 
-            title: "Reliable Supply", 
+        {
+            title: "Reliable Supply",
             desc: "Consistent inventory and dependable deliveries",
             fullDesc: "Our robust inventory management and production capabilities ensure uninterrupted product availability. We are committed to meeting customer demand with dependable and timely supply throughout the year.",
-            icon: "📦" 
+            icon: "📦"
         },
-        { 
-            title: "Fast Delivery", 
+        {
+            title: "Fast Delivery",
             desc: "Optimised logistics for prompt fulfilment",
             fullDesc: "With optimized logistics and an efficient distribution network, we ensure quick order processing and prompt delivery. Our transportation systems maintain product quality throughout transit.",
-            icon: "🚚" 
+            icon: fastDeliveryImg
         },
-        { 
-            title: "24/7 Support", 
+        {
+            title: "24/7 Support",
             desc: "Round-the-clock assistance for critical operations",
             fullDesc: "Our dedicated support team is available around the clock to assist with product inquiries, orders, technical guidance, and emergency requirements, ensuring complete customer satisfaction.",
-            icon: "📞" 
+            icon: "📞"
         },
-        
+
     ]
     const handleCardHover = (index) => {
         console.log("hover", index);
@@ -68,18 +69,18 @@ function Features(){
     const handleCardClick = (index) => {
         setMobileTooltip(mobileTooltip === index ? null : index);
     };
-    
 
-    return(
+
+    return (
         <section id="why" style={{
-            padding:"80px 60px",
-            background:"#081420",
+            padding: "80px 60px",
+            background: "#081420",
             overflow: "visible",
             position: "relative"
-            
-            }}>
 
-            <motion.h2 style={{ textAlign: "center", fontSize: "42px", marginBottom: "50px", color:"#FFFFFF", overflow: "hidden", }}
+        }}>
+
+            <motion.h2 style={{ textAlign: "center", fontSize: "42px", marginBottom: "50px", color: "#FFFFFF", overflow: "hidden", }}
                 variants={container}
                 initial="hidden"
                 whileInView="show"
@@ -92,9 +93,9 @@ function Features(){
 
             <div style={{ display: "flex", justifyContent: "space-between", marginTop: "70px", gap: "24px", flexWrap: "wrap" }}>
                 {Features.map((f, i) => (
-                    <motion.div 
+                    <motion.div
                         key={f.title}
-                    
+
                         variants={cardVariants}
                         initial="hidden"
                         whileInView="show"
@@ -109,20 +110,37 @@ function Features(){
                             background: "linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",
                             borderRadius: "14px",
                             padding: "28px",
-                            border: hoveredCard === i || mobileTooltip === i 
+                            border: hoveredCard === i || mobileTooltip === i
                                 ? "1px solid rgba(0, 191, 255, 0.4)"
                                 : "1px solid rgba(255,255,255,0.04)",
-                            
-                            boxShadow: hoveredCard === i || mobileTooltip === i 
+
+                            boxShadow: hoveredCard === i || mobileTooltip === i
                                 ? "0 20px 50px rgba(0, 191, 255, 0.3), 0 0 30px rgba(0, 191, 255, 0.2)"
                                 : "0 8px 30px rgba(0,0,0,0.6)",
                             position: "relative",
                             cursor: "pointer",
                             transition: "all 0.3s ease",
                             transform: hoveredCard === i || mobileTooltip === i ? "translateY(-10px)" : "translateY(0)"
-                            
+
                         }}>
-                        <div style={{ fontSize: "34px", marginBottom: "12px" }}>{f.icon}</div>
+                        <div style={{ fontSize: "34px", marginBottom: "12px" }}>
+                            {f.title === "Fast Delivery" ? (
+                                <img
+                                    src={f.icon}
+                                    alt={f.title}
+                                    style={{
+                                        width: "100%",
+                                        height: "115px",
+                                        objectFit: "cover",
+                                        borderRadius: "10px",
+                                        display: "block"
+                                    }}
+                                />
+                            ) : (
+                                f.icon
+                            )}
+                        </div>
+    
                         <h3 style={{ fontSize: "20px", marginBottom: "8px" }}>{f.title}</h3>
 
                         {/* Tooltip */}
