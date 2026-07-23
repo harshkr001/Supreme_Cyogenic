@@ -3,6 +3,7 @@ import { useState } from "react";
 import fastDeliveryImg from "../assets/fleet1.png";
 import supportImg from "../assets/24:7support.png";
 import relSupplyImg from "../assets/reliable_supply.jpeg"
+import premiumImg from "../assets/premium.jpeg"
 
 
 const heading = "Why Choose SUPREME CRYOGENIC?";
@@ -38,7 +39,7 @@ function Features() {
             title: "Premium Quality",
             desc: "High-purity dry ice products for industrial use",
             fullDesc: "We manufacture high-purity dry ice products using advanced production processes and strict quality standards. Every product is tested to ensure consistent performance, maximum cooling efficiency, and safe industrial usage.",
-            icon: "❄️"
+            icon: premiumImg
         },
         {
             title: "Reliable Supply",
@@ -128,6 +129,7 @@ function Features() {
                         }}>
                         <div style={{ fontSize: "34px", marginBottom: "12px" }}>
                             {f.title === "Fast Delivery" || 
+                            f.title == "Premium Quality" ||
                             f.title == "Reliable Supply" ||
                             f.title == "24/7 Support" ? (
                                 <img
