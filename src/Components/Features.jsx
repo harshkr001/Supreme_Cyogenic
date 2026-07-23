@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import fastDeliveryImg from "../assets/fleet1.png";
 import supportImg from "../assets/24:7support.png";
+import relSupplyImg from "../assets/reliable_supply.jpeg"
 
 
 const heading = "Why Choose SUPREME CRYOGENIC?";
@@ -43,7 +44,7 @@ function Features() {
             title: "Reliable Supply",
             desc: "Consistent inventory and dependable deliveries",
             fullDesc: "Our robust inventory management and production capabilities ensure uninterrupted product availability. We are committed to meeting customer demand with dependable and timely supply throughout the year.",
-            icon: "📦"
+            icon: relSupplyImg
         },
         {
             title: "Fast Delivery",
@@ -127,6 +128,7 @@ function Features() {
                         }}>
                         <div style={{ fontSize: "34px", marginBottom: "12px" }}>
                             {f.title === "Fast Delivery" || 
+                            f.title == "Reliable Supply" ||
                             f.title == "24/7 Support" ? (
                                 <img
                                     src={f.icon}
