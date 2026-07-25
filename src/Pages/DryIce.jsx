@@ -1,17 +1,14 @@
-function DryIce(){
+import DryIceHero from "../Components/DryIceHero.jsx";
 
-return(
+import AboutDryIce from "../Components/AboutDryIce.jsx";
 
-<section>
-
-<h1>Dry Ice Products</h1>
-
-<p>Dry ice blocks, pellets and industrial cooling solutions.</p>
-
-</section>
-
-);
-
+function DryIce() {
+  return (
+    <>
+      <DryIceHero />
+      <AboutDryIce/>
+    </>
+  );
 }
 
 export default DryIce;
