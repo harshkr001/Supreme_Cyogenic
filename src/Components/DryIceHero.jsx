@@ -1,7 +1,10 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import dryIceHero from "../assets/dryiceHero.mp4";
 
+
 const DryIceHero = () => {
+  const navigate = useNavigate();
   return (
     <section
       style={{
@@ -26,7 +29,7 @@ const DryIceHero = () => {
           objectFit: "cover",
         }}
       >
-        <source src= {dryIceHero} type="video/mp4" />
+        <source src={dryIceHero} type="video/mp4" />
       </video>
 
       {/* Dark Overlay */}
@@ -93,6 +96,12 @@ const DryIceHero = () => {
           }}
         >
           <button
+            onClick={() => {
+              document.getElementById("products")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }}
             style={{
               padding: "15px 35px",
               background: "#00BFFF",
@@ -107,6 +116,7 @@ const DryIceHero = () => {
           </button>
 
           <button
+            onClick={() => navigate("/contact")}
             style={{
               padding: "15px 35px",
               background: "transparent",
@@ -119,6 +129,7 @@ const DryIceHero = () => {
           >
             Request a Quote
           </button>
+
         </motion.div>
       </div>
     </section>
