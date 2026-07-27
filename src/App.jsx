@@ -21,6 +21,10 @@ import Profile from "./Pages/Profile";
 import Orders from "./Pages/Orders";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import IndustrialGases from "./Pages/IndustrialGases";
+import Argon from "./Pages/Argon";
+import Oxygen from "./Pages/Oxygen";
+import Nitrogen from "./Pages/Nitrogen";
+import MixArgon from "./Pages/MixArgon";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -65,6 +69,14 @@ function App() {
           <Route path="/orders" element={<Orders />} />
 
           <Route path="/industrial-gases" element={<IndustrialGases />} />
+
+          <Route path="/argon" element={<Argon />} />
+
+          <Route path="/oxygen" element={<Oxygen />} />
+
+          <Route path="/nitrogen" element={<Nitrogen />} />
+
+          <Route path="/mixargon" element={<MixArgon />} />
 
           <Route
             path="/admin"
