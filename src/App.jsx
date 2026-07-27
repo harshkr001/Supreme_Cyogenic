@@ -20,6 +20,7 @@ import AdminLogin from "./Pages/AdminLogin";
 import Profile from "./Pages/Profile";
 import Orders from "./Pages/Orders";
 import ProtectedRoute from "./Components/ProtectedRoute";
+import IndustrialGases from "./Pages/IndustrialGases";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -62,6 +63,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
 
           <Route path="/orders" element={<Orders />} />
+
+          <Route path="/industrial-gases" element={<IndustrialGases />} />
 
           <Route
             path="/admin"
