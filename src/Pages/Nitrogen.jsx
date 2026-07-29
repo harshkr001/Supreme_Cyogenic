@@ -6,7 +6,7 @@ const products = [
     {
 
         id: "nitrogen-0",
-        image: "/nitrogen1.jpeg",
+        image: "/Premium_N2.jpeg",
         title: "Premium Liquid Nitrogen (LIN)",
         price: "Custom Pricing",
         productCode: "LIN-01",
@@ -44,7 +44,7 @@ const products = [
     {
 
         id: "nitrogen-1",
-        image: "/nitrogen2.jpeg",
+        image: "/Industrial_N2.jpeg",
         title: "Industrial Liquid Nitrogen",
         price: "Custom Pricing",
         productCode: "LIN-02",
@@ -80,7 +80,7 @@ const products = [
     },
     {
         id: "nitrogen-2",
-        image: "/nitrogen3.jpeg",
+        image: "/Bulk_N2.jpeg",
         title: "Bulk Liquid Nitrogen Supply",
         price: "Bulk Orders Available",
         productCode: "LIN-03",

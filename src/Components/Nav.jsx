@@ -2,24 +2,41 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../Context/CartContext";
 
-const products = [
+const dryIceProducts = [
   {
     title: "Dry Ice Blocks",
     description:
-      "High-quality dry ice blocks for industrial cooling, storage, transportation, and temperature-sensitive applications.",
+      "High-density dry ice blocks for industrial cooling, cold chain logistics, and food preservation.",
     path: "/dry-ice-blocks",
   },
   {
     title: "Dry Ice Pellets",
     description:
-      "Premium dry ice pellets suitable for dry ice blasting, cleaning applications, and industrial processing.",
+      "Premium dry ice pellets for dry ice blasting, industrial cleaning, and precision cooling.",
     path: "/dry-ice-pellets",
   },
+];
+
+const gasProducts = [
   {
-    title: "Liquid CO2",
-    description:
-      "Food-grade and industrial-grade liquid CO2 solutions for manufacturing, beverage, and industrial applications.",
+    title: "Carbon Dioxide (CO₂)",
     path: "/co2",
+  },
+  {
+    title: "Liquid Oxygen (LOX)",
+    path: "/oxygen",
+  },
+  {
+    title: "Liquid Nitrogen (LIN)",
+    path: "/nitrogen",
+  },
+  {
+    title: "Liquid Argon (LAR)",
+    path: "/argon",
+  },
+  {
+    title: "Mixed Argon Shielding Gas",
+    path: "/mixargon",
   },
 ];
 
@@ -202,9 +219,10 @@ function Nav({ onAuthClick }) {
           <div
             style={{
               position: "absolute",
-              right: 0,
+              right: "-320px",
               top: "calc(100% + 12px)",
-              width: "min(420px, 100vw - 40px)",
+              width: "1050px",
+              maxWidth: "95vw",
               padding: "20px",
               borderRadius: "22px",
               background: "rgba(255,255,255,0.98)",
@@ -223,64 +241,125 @@ function Nav({ onAuthClick }) {
             <div
               style={{
                 display: "grid",
-                gap: "14px",
+                gridTemplateColumns: "320px 1px 1fr",
+                gap: "25px",
+                alignItems: "start",
               }}
             >
-              {products.map((product) => (
-                <article
-                  key={product.title}
+              {/* Dry Ice */}
+              <div>
+                <h2
                   style={{
-                    display: "grid",
-                    gap: "18px",
-                    padding: "20px",
-                    borderRadius: "18px",
-                    background: "rgba(7, 17, 31, 0.03)",
-                    transition: "background 0.2s ease, transform 0.2s ease",
-                  }}
-                  onMouseEnter={(event) => {
-                    event.currentTarget.style.transform = "translateY(-2px)";
-                    event.currentTarget.style.background = "rgba(0, 174, 239, 0.08)";
-                  }}
-                  onMouseLeave={(event) => {
-                    event.currentTarget.style.transform = "translateY(0)";
-                    event.currentTarget.style.background = "rgba(7, 17, 31, 0.03)";
+                    color: "#0B2447",
+                    marginBottom: "20px",
+                    borderBottom: "2px solid #00AEEF",
+                    paddingBottom: "10px",
                   }}
                 >
-                  <div>
-                    <h3 style={{ margin: 0, fontSize: "18px", fontWeight: 700 }}>{product.title}</h3>
+                  ❄️ Dry Ice
+                </h2>
+
+                {dryIceProducts.map((product) => (
+                  <article
+                    key={product.title}
+                    style={{
+                      marginBottom: "20px",
+                      padding: "18px",
+                      borderRadius: "16px",
+                      background: "#F8FAFC",
+                    }}
+                  >
+                    <h3>{product.title}</h3>
+
                     <p
                       style={{
-                        margin: "10px 0 0",
-                        lineHeight: "1.6",
-                        color: "#334155",
+                        color: "#475569",
                         fontSize: "14px",
-                        maxWidth: "100%",
+                        lineHeight: "1.6",
                       }}
                     >
                       {product.description}
                     </p>
-                  </div>
-                  <Link
-                    to={product.path}
-                    onClick={() => setProductsMenuOpen(false)}
+
+                    <Link
+                      to={product.path}
+                      onClick={() => setProductsMenuOpen(false)}
+                      style={{
+                        background: "#00AEEF",
+                        color: "#fff",
+                        textDecoration: "none",
+                        padding: "10px 18px",
+                        borderRadius: "30px",
+                        display: "inline-block",
+                        marginTop: "10px",
+                      }}
+                    >
+                      View Product
+                    </Link>
+                  </article>
+                ))}
+              </div>
+              <div
+                style={{
+                  background: "#E2E8F0",
+                  width: "1px",
+                  height: "100%",
+                }}
+              />
+
+              {/* Industrial Gases */}
+              <div>
+                <h2
+                  style={{
+                    color: "#0B2447",
+                    marginBottom: "20px",
+                    borderBottom: "2px solid #00AEEF",
+                    paddingBottom: "10px",
+                  }}
+                >
+                  🧪 Industrial Gases
+                </h2>
+
+                {gasProducts.map((product) => (
+                  <article
+                    key={product.title}
                     style={{
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderRadius: "999px",
-                      padding: "10px 16px",
-                      width: "fit-content",
-                      background: "#00AEEF",
-                      color: "#fff",
-                      fontWeight: 600,
-                      fontSize: "14px",
-                      textDecoration: "none",
+                      marginBottom: "20px",
+                      padding: "18px",
+                      borderRadius: "16px",
+                      background: "#F8FAFC",
                     }}
                   >
-                    View Product
-                  </Link>
-                </article>
-              ))}
+                    <h3>{product.title}</h3>
+
+                    <p
+                      style={{
+                        color: "#475569",
+                        fontSize: "14px",
+                        lineHeight: "1.6",
+                      }}
+                    >
+                      {product.description}
+                    </p>
+
+                    <Link
+                      to={product.path}
+                      onClick={() => setProductsMenuOpen(false)}
+                      style={{
+                        background: "#00AEEF",
+                        color: "#fff",
+                        textDecoration: "none",
+                        padding: "10px 18px",
+                        borderRadius: "30px",
+                        display: "inline-block",
+                        marginTop: "10px",
+                      }}
+                    >
+                      View Product
+                    </Link>
+                  </article>
+                ))}
+              </div>
             </div>
           </div>
         </div>

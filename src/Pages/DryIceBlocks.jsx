@@ -10,7 +10,7 @@ function DryIceBlocks() {
   const products = [
     {
       id: "block-0",
-      image: "/block1.jpeg",
+      image: "/Blocks.jpeg",
       title: "Industrial Dry Ice Blocks",
       price: "$ 12 / 5kg",
       productCode: "DIB-05",
@@ -44,7 +44,7 @@ function DryIceBlocks() {
     },
     {
       id: "block-1",
-      image: "/block2.jpeg",
+      image: "/premium_block.jpeg",
       title: "Premium Cooling Blocks",
       price: "$ 22 / 10kg",
       productCode: "PCB-10",
@@ -77,7 +77,7 @@ function DryIceBlocks() {
     },
     {
       id: "block-2",
-      image: "/block3.jpeg",
+      image: "/bulk_block.jpeg",
       title: "Bulk Dry Ice Blocks",
       price: "Custom Pricing",
       productCode: "BDB-01",

@@ -4,8 +4,8 @@ import { useCart } from "../Context/CartContext";
 
 const products = [
     {
-        id: "co2-0",
-        image: "/co2a.jpeg",
+        id: "ar-0",
+        image: "/Premium_Ar.jpeg",
         title: "Premium Liquid Argon (LAR)",
 
         price: "Custom Pricing",
@@ -46,8 +46,8 @@ const products = [
 
     },
     {
-        id: "co2-1",
-        image: "/co2b.jpeg",
+        id: "ar-1",
+        image: "/Industrial_Ar.jpeg",
         title: "Industrial Liquid Argon",
 
         price: "Custom Pricing",
@@ -87,8 +87,8 @@ const products = [
         ]
     },
     {
-        id: "co2-2",
-        image: "/co2c.jpeg",
+        id: "ar-2",
+        image: "/argon.jpeg",
         title: "Bulk Liquid Argon Supply",
 
         price: "Bulk Orders Available",

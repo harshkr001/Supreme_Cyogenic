@@ -7,7 +7,7 @@ const featuredUpdate = {
   category: "Transportation & Logistics",
   summary:
     "Our newest distribution center expands cold chain reach across the western region, supporting faster dry ice delivery and premium cryogenic handling for industrial customers.",
-  image: "/logistics-hub.jpeg",
+  image: "/fleet.jpeg",
 };
 
 const newsArticles = [
@@ -199,8 +199,18 @@ function Updates() {
               boxShadow: "0 30px 90px rgba(1, 31, 59, 0.28)",
             }}
           >
-            <div style={{ display: "grid", gridTemplateColumns: "1.2fr 0.9fr", minHeight: "280px" }}>
-              <img src={featuredUpdate.image} alt={featuredUpdate.title} style={{ width: "100%", height: "280px", objectFit: "cover", borderRadius: "16px" }} />
+            <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", minHeight: "380px" }}>
+              <motion.img src={featuredUpdate.image} alt={featuredUpdate.title}
+               style={{
+                 width: "100%",
+                 height: "380px",
+                 objectFit: "cover",
+                 objectPosition: "center",
+                 borderRadius: "16px",
+                 display: "block"
+              
+                }} 
+                />
               <div style={{ padding: "32px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div>
                   <span style={{ color: "#7DD3FC", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", fontSize: "12px" }}>

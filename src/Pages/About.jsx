@@ -157,7 +157,7 @@ function About() {
         >
           <h2 style={{ color: "#00e5ff" }}>Fast Delivery</h2>
           <p style={{ color: "#cbd5e1", marginTop: "15px" }}>
-            Reliable and fast transportation solutions across Sri Lanka.
+            Reliable and fast transportation solutions across India.
           </p>
         </div>
 

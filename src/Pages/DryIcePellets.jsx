@@ -10,7 +10,7 @@ function DryIcePellets() {
   const products = [
     {
       id: "pellet-0",
-      image: "/pellet1.jpeg",
+      image: "/Pellets.jpeg",
       title: "Dry Ice Pellets – Industrial Grade",
       price: "$ 8.5 / kg",
       productCode: "DIP-01",
@@ -44,7 +44,7 @@ function DryIcePellets() {
     },
     {
       id: "pellet-1",
-      image: "/pellet2.jpeg",
+      image: "/premium_pellets.jpeg",
       title: "Premium Dry Ice Pellets",
       price: "$ 9.5 / kg",
       productCode: "PDP-02",
@@ -77,7 +77,7 @@ function DryIcePellets() {
     },
     {
       id: "pellet-2",
-      image: "/pellet3.jpeg",
+      image: "/bulk_pellets.jpeg",
       title: "Bulk Dry Ice Pellets",
       price: "Custom Quote",
       productCode: "BDP-03",

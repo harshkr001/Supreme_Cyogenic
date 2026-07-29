@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import heroVideo from "../assets/hero-video.mp4";
+import heroVideo from "../assets/herovideo.mp4";
 
 function HeroSection(){
     return(

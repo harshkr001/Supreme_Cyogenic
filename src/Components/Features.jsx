@@ -137,10 +137,13 @@ function Features() {
                                     alt={f.title}
                                     style={{
                                         width: "100%",
-                                        height: "115px",
-                                        objectFit: "cover",
+                                        height: "180px",
+                                        objectFit: "contain",
+                                        objectPosition: "center",
                                         borderRadius: "10px",
-                                        display: "block"
+                                        display: "block",
+                                        background: "#081420",
+                                        padding: "8px"
                                     }}
                                 />
                             ) : (

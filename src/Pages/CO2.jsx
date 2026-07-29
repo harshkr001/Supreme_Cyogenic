@@ -5,7 +5,7 @@ import { useCart } from "../Context/CartContext";
 const products = [
   {
     id: "co2-0",
-    image: "/co2a.jpeg",
+    image: "/Industrial_CO2.jpeg",
     title: "Industrial CO₂ Cylinders",
     price: "Custom Pricing",
     productCode: "ICO2-01",
@@ -41,7 +41,7 @@ const products = [
   },
   {
     id: "co2-1",
-    image: "/co2b.jpeg",
+    image: "/Beverage_CO2.jpeg",
     title: "Beverage Grade CO₂",
     price: "$ 45 / Cylinder",
     productCode: "BCO2-02",
@@ -76,7 +76,7 @@ const products = [
   },
   {
     id: "co2-2",
-    image: "/co2c.jpeg",
+    image: "/co2.jpeg",
     title: "Bulk CO₂ Supply",
     price: "Bulk Orders Available",
     productCode: "BSP-03",

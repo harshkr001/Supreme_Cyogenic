@@ -6,7 +6,7 @@ const products = [
     {
 
         id: "oxygen-0",
-        image: "/oxygen1.jpeg",
+        image: "/Premium_O2.jpeg",
         title: "Premium Liquid Oxygen (LOX)",
         price: "Custom Pricing",
         productCode: "LOX-01",
@@ -44,7 +44,7 @@ const products = [
     {
 
         id: "oxygen-1",
-        image: "/oxygen2.jpeg",
+        image: "/Industrial_02.jpeg",
         title: "Industrial Liquid Oxygen",
         price: "Custom Pricing",
         productCode: "LOX-02",
@@ -81,7 +81,7 @@ const products = [
     {
 
         id: "oxygen-2",
-        image: "/oxygen3.jpeg",
+        image: "/oxygen.jpeg",
         title: "Bulk Liquid Oxygen Supply",
         price: "Bulk Orders Available",
         productCode: "LOX-03",
