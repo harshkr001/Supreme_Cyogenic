@@ -25,6 +25,7 @@ import Argon from "./Pages/Argon";
 import Oxygen from "./Pages/Oxygen";
 import Nitrogen from "./Pages/Nitrogen";
 import MixArgon from "./Pages/MixArgon";
+import ScrollToTop from "./Components/ScrollToTop";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -33,6 +34,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <CartProvider>
         <Nav onAuthClick={() => setIsAuthOpen(true)} />
 

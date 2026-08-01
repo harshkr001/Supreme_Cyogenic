@@ -1,6 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useCart } from "../Context/CartContext";
+import { FaBars, FaTimes } from "react-icons/fa"
+
 
 const dryIceProducts = [
   {
@@ -42,14 +44,25 @@ const gasProducts = [
 
 function Nav({ onAuthClick }) {
 
+  const [menuOpen, setMenuOpen] = useState(false)
+
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
+  const mobileLinkStyle = {
+    display: "block",
+    padding: "16px 20px",
+    color: "#0B2447",
+    textDecoration: "none",
+    fontWeight: "600",
+    borderBottom: "1px solid #E5E7EB",
+  }
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
   const { getTotalItems } = useCart();
   const cartCount = getTotalItems();
   const [productsMenuOpen, setProductsMenuOpen] = useState(false);
+
   const [updatesTooltipOpen, setUpdatesTooltipOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -61,7 +74,7 @@ function Nav({ onAuthClick }) {
 
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 880px)");
+    const mediaQuery = window.matchMedia("(max-width: 992px)");
     const handleResize = () => setIsMobile(mediaQuery.matches);
 
     handleResize();
@@ -104,13 +117,148 @@ function Nav({ onAuthClick }) {
     }
   };
 
+  if (isMobile) {
+    return (
+      <header
+        style={{
+          background: "#fff",
+          padding: "12px 20px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          position: "sticky",
+          top: 0,
+          zIndex: 1000,
+          boxShadow: "0 2px 10px rgba(0,0,0,0.08)",
+        }}
+      >
+        {/* Logo */}
+        <button
+          onClick={() => navigate("/")}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            border: "none",
+            background: "transparent",
+            cursor: "pointer",
+          }}
+        >
+          <img
+            src="/logo.png.jpeg"
+            alt="Logo"
+            style={{ width: "45px", height: "45px" }}
+          />
+
+          <h2
+            style={{
+              margin: 0,
+              color: "#0B2447",
+              fontSize: "22px",
+              fontWeight: "800",
+            }}
+          >
+            SUPREME
+          </h2>
+        </button>
+
+        {/* Hamburger */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            fontSize: "30px",
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          ☰
+        </button>
+        {menuOpen && (
+          <div
+            style={{
+              position: "absolute",
+              top: "75px",
+              right: "20px",
+              width: "280px",
+              background: "#ffffff",
+              borderRadius: "16px",
+              boxShadow: "0 12px 35px rgba(0,0,0,0.15)",
+              overflow: "hidden",
+              zIndex: 9999,
+            }}
+          >
+            <Link
+              to="/"
+              onClick={() => setMenuOpen(false)}
+              style={mobileLinkStyle}
+            >
+              Home
+            </Link>
+
+            <Link
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+              style={mobileLinkStyle}
+            >
+              About Us
+            </Link>
+
+            <Link
+              to="/updates"
+              onClick={() => setMenuOpen(false)}
+              style={mobileLinkStyle}
+            >
+              Updates
+            </Link>
+
+            <Link
+              to="/contact"
+              onClick={() => setMenuOpen(false)}
+              style={mobileLinkStyle}
+            >
+              Contact Us
+            </Link>
+
+            <Link
+              to="/cart"
+              onClick={() => setMenuOpen(false)}
+              style={mobileLinkStyle}
+            >
+              Cart
+            </Link>
+
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                onAuthClick();
+              }}
+              style={{
+                width: "100%",
+                padding: "16px",
+                border: "none",
+                background: "#00AEEF",
+                color: "white",
+                fontWeight: "600",
+                cursor: "pointer",
+                fontSize: "16px",
+              }}
+            >
+              {user ? "Profile" : "Login / Sign Up"}
+            </button>
+          </div>
+        )}
+      </header>
+    )
+  }
+
   return (
     <header
       style={{
         background: "rgba(255,255,255,0.8)",
         backdropFilter: "blur(10px)",
         WebkitBackdropFilter: "blur(12px)",
-        padding: "15px 40px",
+        padding: "15px 20px",
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
@@ -145,8 +293,8 @@ function Nav({ onAuthClick }) {
           src="/logo.png.jpeg"
           alt="Supreme Cryogenic"
           style={{
-            width: "70px",
-            height: "70px",
+            width: "55px",
+            height: "55px",
             objectFit: "contain",
           }}
         />
@@ -155,7 +303,7 @@ function Nav({ onAuthClick }) {
             style={{
               margin: "0",
               color: "#0B2447",
-              fontSize: "34px",
+              fontSize: "28px",
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: "800",
               letterSpacing: "1px",
@@ -167,10 +315,10 @@ function Nav({ onAuthClick }) {
             style={{
               margin: "0",
               color: "#90AEEF",
-              letterSpacing: "8px",
+              letterSpacing: "3px",
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: "500",
-              fontSize: "16px",
+              fontSize: "11px",
             }}
           >
             CRYOGENIC
@@ -178,7 +326,7 @@ function Nav({ onAuthClick }) {
         </div>
       </button>
 
-      <nav style={{ display: "flex", gap: "30px", alignItems: "center" }}>
+      <nav style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "nowrap", }}>
         <div
           ref={productsDropdownRef}
           style={{ position: "relative" }}
@@ -193,7 +341,8 @@ function Nav({ onAuthClick }) {
             aria-expanded={productsMenuOpen}
             style={{
               color: "#0B2447",
-              fontSize: "18px",
+              fontSize: "16px",
+              whiteSpace: "nowrap",
               fontWeight: "500",
               cursor: "pointer",
               background: "transparent",
@@ -221,8 +370,8 @@ function Nav({ onAuthClick }) {
               position: "absolute",
               right: "-320px",
               top: "calc(100% + 12px)",
-              width: "1050px",
-              maxWidth: "95vw",
+              width: "720px",
+              maxWidth: "80vw",
               padding: "20px",
               borderRadius: "22px",
               background: "rgba(255,255,255,0.98)",
@@ -369,7 +518,8 @@ function Nav({ onAuthClick }) {
           style={{
             color: "#0B2447",
             textDecoration: "none",
-            fontSize: "18px",
+            fontSize: "16px",
+            whiteSpace: "nowrap",
             fontWeight: "500",
           }}
         >
@@ -387,7 +537,8 @@ function Nav({ onAuthClick }) {
             style={{
               color: "#0B2447",
               textDecoration: "none",
-              fontSize: "18px",
+              fontSize: "16px",
+              whiteSpace: "nowrap",
               fontWeight: "500",
               display: "flex",
               alignItems: "center",
@@ -451,7 +602,8 @@ function Nav({ onAuthClick }) {
           style={{
             color: "#0B2447",
             textDecoration: "none",
-            fontSize: "18px",
+            fontSize: "16px",
+            whiteSpace: "nowrap",
             fontWeight: "500",
           }}
         >

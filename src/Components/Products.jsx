@@ -74,7 +74,9 @@ function Products() {
                 }}
             >
                 {items.map((it, idx) => (
-                    <Link key={it.title} to={it.to} style={{ textDecoration: "none", color: "inherit" }}>
+                    <Link key={it.title} to={it.to}
+                    
+                    style={{ textDecoration: "none", color: "inherit" }}>
                         <motion.div className="product-card"
                             variants={{
                                 hidden: { opacity: 0, x: idx % 2 === 0 ? -80 : 80 },
