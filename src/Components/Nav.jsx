@@ -56,6 +56,9 @@ function Nav({ onAuthClick }) {
     textDecoration: "none",
     fontWeight: "600",
     borderBottom: "1px solid #E5E7EB",
+    borderRadius: "10px",
+    transition: "all 0.25s ease",
+    cursor: "pointer"
   }
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const location = useLocation();
@@ -191,6 +194,7 @@ function Nav({ onAuthClick }) {
             <Link
               to="/"
               onClick={() => setMenuOpen(false)}
+              className="mobile-menu-link"
               style={mobileLinkStyle}
             >
               Home
@@ -199,6 +203,7 @@ function Nav({ onAuthClick }) {
             <Link
               to="/about"
               onClick={() => setMenuOpen(false)}
+              className="mobile-menu-link"
               style={mobileLinkStyle}
             >
               About Us
@@ -207,6 +212,7 @@ function Nav({ onAuthClick }) {
             <Link
               to="/updates"
               onClick={() => setMenuOpen(false)}
+              className="mobile-menu-link"
               style={mobileLinkStyle}
             >
               Updates
@@ -215,6 +221,7 @@ function Nav({ onAuthClick }) {
             <Link
               to="/contact"
               onClick={() => setMenuOpen(false)}
+              className="mobile-menu-link"
               style={mobileLinkStyle}
             >
               Contact Us
@@ -223,6 +230,7 @@ function Nav({ onAuthClick }) {
             <Link
               to="/cart"
               onClick={() => setMenuOpen(false)}
+              className="mobile-menu-link"
               style={mobileLinkStyle}
             >
               Cart
@@ -326,7 +334,7 @@ function Nav({ onAuthClick }) {
         </div>
       </button>
 
-      <nav style={{ display: "flex", gap: "10px", alignItems: "center", flexWrap: "nowrap", }}>
+      <nav style={{ display: "flex", gap: "35px", alignItems: "center", flexWrap: "nowrap", }}>
         <div
           ref={productsDropdownRef}
           style={{ position: "relative" }}
@@ -347,7 +355,7 @@ function Nav({ onAuthClick }) {
               cursor: "pointer",
               background: "transparent",
               border: "none",
-              padding: 0,
+              padding: "8px 12px",
               display: "flex",
               alignItems: "center",
               gap: "8px",

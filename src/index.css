@@ -466,3 +466,14 @@ border-radius: 8px;
     @apply font-sans;
   }
 }
+
+.mobile-menu-link {
+  transition: all 0.25s ease;
+  border-radius: 10px;
+}
+
+.mobile-menu-link:hover {
+  background: #D9F4FF;
+  color: #00AEEF !important;
+  transform: translateX(8px);
+}

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import fastDeliveryImg from "../assets/fleet1.png";
-import supportImg from "../assets/24:7support.png";
+import supportImg from "../assets/24-7support.png";
 import relSupplyImg from "../assets/reliable_supply.jpeg"
 import premiumImg from "../assets/premium.jpeg"
 
