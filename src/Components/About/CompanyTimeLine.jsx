@@ -1,3 +1,4 @@
+
 function CompanyTimeline() {
   const timeline = [
     {
@@ -22,6 +23,8 @@ function CompanyTimeline() {
     }
   ];
 
+  const isMobile = window.innerWidth <= 900
+
   return (
     <section
       style={{
@@ -39,55 +42,66 @@ function CompanyTimeline() {
       >
         Our Journey
       </h2>
-
-      {timeline.map((item, index) => (
-        <div
-          key={index}
-          style={{
-            display: "flex",
-            gap: "35px",
-            marginBottom: "45px",
-            alignItems: "flex-start",
-          }}
-        >
-          <div
-            style={{
-              width: "90px",
-              color: "#00BFFF",
-              fontWeight: "bold",
-              fontSize: "24px",
-            }}
-          >
-            {item.year}
-          </div>
-
-          <div
-            style={{
-              borderLeft: "3px solid #00BFFF",
-              paddingLeft: "30px",
-            }}
-          >
-            <h3
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: isMobile ? "1fr" : "1.2fr 0.8fr",
+          gap: "60px",
+          alignItems: "center",
+        }}
+      >
+        {/* Left Side - Timeline */}
+        <div>
+          {timeline.map((item, index) => (
+            <div
+              key={index}
               style={{
-                color: "white",
-                marginBottom: "10px",
-                fontSize: "28px",
+                display: "flex",
+                gap: "35px",
+                marginBottom: "45px",
+                alignItems: "flex-start",
               }}
             >
-              {item.title}
-            </h3>
+              <div
+                style={{
+                  width: "90px",
+                  color: "#00BFFF",
+                  fontWeight: "bold",
+                  fontSize: "24px",
+                }}
+              >
+                {item.year}
+              </div>
 
-            <p
-              style={{
-                color: "#C8D6E5",
-                lineHeight: "1.8",
-              }}
-            >
-              {item.desc}
-            </p>
-          </div>
+              <div
+                style={{
+                  borderLeft: "3px solid #00BFFF",
+                  paddingLeft: "30px",
+                }}
+              >
+                <h3
+                  style={{
+                    color: "white",
+                    marginBottom: "10px",
+                    fontSize: "28px",
+                  }}
+                >
+                  {item.title}
+                </h3>
+
+                <p
+                  style={{
+                    color: "#C8D6E5",
+                    lineHeight: "1.8",
+                  }}
+                >
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      </div>
     </section>
   );
 }

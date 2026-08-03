@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
+import { useState } from "react"
+
+const isMobile = window.innerWidth <= 900
 
 function Footer() {
+  const [hoveredLink, setHoveredLink] = useState("");
   return (
     <footer
       style={{
         background:
           "linear-gradient(180deg,#07101c,#0b1727)",
         color: "white",
-        padding: "70px 60px 30px",
+        padding: isMobile ? "50px 20px 25px" : "70px 60px 30px",
         marginTop: "0px",
-        
+
         borderTop: "1px solid rgba(255,255,255,0.08)"
       }}
     >
@@ -18,8 +22,9 @@ function Footer() {
         style={{
           display: "grid",
           gridTemplateColumns:
-            "2fr 1fr 1fr",
-          gap: "60px",
+            isMobile ? "1fr" : "2fr 1fr 1fr",
+          gap: isMobile ? "40px" : "60px",
+          textAlign: isMobile ? "center" : "left",
           alignItems: "start"
         }}
       >
@@ -32,7 +37,7 @@ function Footer() {
             style={{
               margin: 0,
               color: "#00AEEF",
-              fontSize: "34px"
+              fontSize: isMobile ? "30px" : "34px"
             }}
           >
             SUPREME
@@ -42,7 +47,9 @@ function Footer() {
             style={{
               color: "#cbd5e1",
               lineHeight: "30px",
-              maxWidth: "420px"
+              maxWidth: isMobile ? "100%" : "420px",
+              margin: isMobile ? "0 auto" : "0",
+              fontSize: isMobile ? "15px" : "16px"
             }}
           >
             Premium cryogenic products,
@@ -69,44 +76,79 @@ function Footer() {
             }}
           >
 
-            <Link 
-            style={linkStyle} 
-            to="/"
-            onClick={() => window.scrollTo(0, 0)}
+            <Link
+              to="/"
+              onClick={() => window.scrollTo(0, 0)}
+              onMouseEnter={() => setHoveredLink("home")}
+              onMouseLeave={() => setHoveredLink("")}
+              style={{
+                ...linkStyle,
+                color: hoveredLink === "home" ? "#00BFFF" : "#dbeafe",
+                transform: hoveredLink === "home" ? "translateX(8px)" : "translateX(0)",
+                transition: "all 0.3s ease",
+              }}
             >
               Home
             </Link>
 
             <Link
-              style={linkStyle}
-              to="/dry-ice-blocks"
+              to="/dry-ice"
               onClick={() => window.scrollTo(0, 0)}
+              onMouseEnter={() => setHoveredLink("dry")}
+              onMouseLeave={() => setHoveredLink("")}
+              style={{
+                ...linkStyle,
+                color: hoveredLink === "dry" ? "#00BFFF" : "#dbeafe",
+                transform: hoveredLink === "dry" ? "translateX(8px)" : "translateX(0)",
+                transition: "all 0.3s ease",
+              }}
             >
-              Dry Ice Blocks
+              Dry Ice Products
             </Link>
 
             <Link
-              style={linkStyle}
-              to="/dry-ice-pellets"
+              to="/industrial-gases"
               onClick={() => window.scrollTo(0, 0)}
+              onMouseEnter={() => setHoveredLink("gas")}
+              onMouseLeave={() => setHoveredLink("")}
+              style={{
+                ...linkStyle,
+                color: hoveredLink === "gas" ? "#00BFFF" : "#dbeafe",
+                transform: hoveredLink === "gas" ? "translateX(8px)" : "translateX(0)",
+                transition: "all 0.3s ease",
+              }}
             >
-              Dry Ice Pellets
+              Industrial Gases
             </Link>
 
             <Link
-              style={linkStyle}
-              to="/co2"
-              onClick={() => window.scrollTo(0, 0)}
-            >
-              CO₂
-            </Link>
-
-            <Link
-              style={linkStyle}
               to="/contact"
               onClick={() => window.scrollTo(0, 0)}
+              onMouseEnter={() => setHoveredLink("about")}
+              onMouseLeave={() => setHoveredLink("")}
+              style={{
+                ...linkStyle,
+                color: hoveredLink === "about" ? "#00BFFF" : "#dbeafe",
+                transform: hoveredLink === "about" ? "translateX(8px)" : "translateX(0)",
+                transition: "all 0.3s ease",
+              }}
             >
-              Contact
+              About us
+            </Link>
+
+            <Link
+              to="/updates"
+              onClick={() => window.scrollTo(0, 0)}
+              onMouseEnter={() => setHoveredLink("updates")}
+              onMouseLeave={() => setHoveredLink("")}
+              style={{
+                ...linkStyle,
+                color: hoveredLink === "updates" ? "#00BFFF" : "#dbeafe",
+                transform: hoveredLink === "updates" ? "translateX(8px)" : "translateX(0)",
+                transition: "all 0.3s ease",
+              }}
+            >
+              Updates
             </Link>
 
           </div>
@@ -121,11 +163,14 @@ function Footer() {
             Contact
           </h3>
 
-          <p>📧 info@supremecryogenic.com</p>
+          <p style={{ lineHeight: "28px" }}>
+            📧 info@supremecryogenic.com</p>
 
-          <p>📞 +94 XX XXX XXXX</p>
+          <p style={{ lineHeight: "28px" }}>
+            📞 +94 XX XXX XXXX</p>
 
-          <p>📍 Noida, India</p>
+          <p style={{ lineHeight: "28px" }}>
+            📍 Noida, India</p>
 
         </div>
 
@@ -142,10 +187,14 @@ function Footer() {
       <div
         style={{
           display: "flex",
+          flexDirection: isMobile ? "column" : "row",
           justifyContent:
             "space-between",
+          alignItems: "center",
+          gap: isMobile ? "10px" : "0",
           marginTop: "20px",
-          color: "#94a3b8"
+          color: "#94a3b8",
+          textAlign: "center"
         }}
       >
 

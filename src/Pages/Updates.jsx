@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
+const isMobile = window.innerWidth <= 900
+
 const featuredUpdate = {
   title: "Supreme Cryogenic Launches New Logistics Hub",
   date: "June 2026",
@@ -199,11 +201,17 @@ function Updates() {
               boxShadow: "0 30px 90px rgba(1, 31, 59, 0.28)",
             }}
           >
-            <div style={{ display: "grid", gridTemplateColumns: "1.6fr 1fr", minHeight: "380px" }}>
+            <div
+             style={{
+                display: "grid",
+                gridTemplateColumns: isMobile ? "1fr" : "1.6fr 1fr" ,
+                minHeight: isMobile ? "auto" : "380px", 
+              }}
+            >
               <motion.img src={featuredUpdate.image} alt={featuredUpdate.title}
                style={{
                  width: "100%",
-                 height: "380px",
+                 height: isMobile ? "240px" : "380px",
                  objectFit: "cover",
                  objectPosition: "center",
                  borderRadius: "16px",
@@ -211,13 +219,19 @@ function Updates() {
               
                 }} 
                 />
-              <div style={{ padding: "32px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div 
+                style={{
+                   padding: isMobile ? "22px" : "32px",
+                   display: "flex", 
+                   flexDirection: "column", 
+                   justifyContent: "space-between"
+                }}>
                 <div>
                   <span style={{ color: "#7DD3FC", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", fontSize: "12px" }}>
                     {featuredUpdate.category}
                   </span>
-                  <h3 style={{ margin: "18px 0 14px", fontSize: "2rem", lineHeight: 1.1, color: "#F8FAFC" }}>{featuredUpdate.title}</h3>
-                  <p style={{ margin: 0, color: "#94A3B8", fontSize: "1rem", lineHeight: 1.85 }}>
+                  <h3 style={{ margin: "18px 0 14px", fontSize: isMobile ? "1.6rem" : "2rem", lineHeight: 1.1, color: "#F8FAFC" }}>{featuredUpdate.title}</h3>
+                  <p style={{ margin: 0, color: "#94A3B8", fontSize: isMobile ? "0.95rem" : "1rem", lineHeight: 1.8 }}>
                     {featuredUpdate.summary}
                   </p>
                 </div>

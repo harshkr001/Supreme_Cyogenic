@@ -7,6 +7,7 @@ import premiumImg from "../assets/premium.jpeg"
 
 
 const heading = "Why Choose SUPREME CRYOGENIC?";
+const isMobile = window.innerWidth <= 900
 
 function Features() {
 
@@ -77,14 +78,14 @@ function Features() {
 
     return (
         <section id="why" style={{
-            padding: "80px 60px",
+            padding: isMobile ? "60PX 20PX" : "80px 60px",
             background: "#081420",
             overflow: "visible",
             position: "relative"
 
         }}>
 
-            <motion.h2 style={{ textAlign: "center", fontSize: "42px", marginBottom: "50px", color: "#FFFFFF", overflow: "hidden", }}
+            <motion.h2 style={{ textAlign: "center", fontSize: isMobile ? "30px" : "42px", marginBottom: "50px", color: "#FFFFFF", overflow: "hidden", }}
                 variants={container}
                 initial="hidden"
                 whileInView="show"
@@ -95,7 +96,7 @@ function Features() {
                 ))}
             </motion.h2>
 
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "70px", gap: "24px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "70px", gap: "24px", flexWrap: "wrap" }}>
                 {Features.map((f, i) => (
                     <motion.div
                         key={f.title}
@@ -109,11 +110,12 @@ function Features() {
                         onClick={() => handleCardClick(i)}
                         transition={{ delay: i * 0.12, duration: 0.45 }}
                         style={{
-                            flex: "1 1 220px",
-                            minWidth: "220px",
+                            flex: isMobile ? "1 1 100%" : "1 1 220px",
+                            minWidth: isMobile ? "100%" : "220px",
+                            maxWidth: isMobile ? "100%" : "320px",
                             background: "linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))",
                             borderRadius: "14px",
-                            padding: "28px",
+                            padding: isMobile ? "18px" : "28px",
                             border: hoveredCard === i || mobileTooltip === i
                                 ? "1px solid rgba(0, 191, 255, 0.4)"
                                 : "1px solid rgba(255,255,255,0.04)",
@@ -122,39 +124,61 @@ function Features() {
                                 ? "0 20px 50px rgba(0, 191, 255, 0.3), 0 0 30px rgba(0, 191, 255, 0.2)"
                                 : "0 8px 30px rgba(0,0,0,0.6)",
                             position: "relative",
+                            overflow: "visible",
                             cursor: "pointer",
                             transition: "all 0.3s ease",
                             transform: hoveredCard === i || mobileTooltip === i ? "translateY(-10px)" : "translateY(0)"
 
                         }}>
                         <div style={{ fontSize: "34px", marginBottom: "12px" }}>
-                            {f.title === "Fast Delivery" || 
-                            f.title == "Premium Quality" ||
-                            f.title == "Reliable Supply" ||
-                            f.title == "24/7 Support" ? (
+                            {f.title === "Fast Delivery" ||
+                                f.title == "Premium Quality" ||
+                                f.title == "Reliable Supply" ||
+                                f.title == "24/7 Support" ? (
                                 <img
                                     src={f.icon}
                                     alt={f.title}
                                     style={{
                                         width: "100%",
-                                        height: "180px",
+                                        height: isMobile ? "140px" : "180px",
                                         objectFit: "contain",
                                         objectPosition: "center",
                                         borderRadius: "10px",
                                         display: "block",
                                         background: "#081420",
-                                        padding: "8px"
+                                        padding: isMobile ? "0" : "8px"
                                     }}
                                 />
                             ) : (
                                 f.icon
                             )}
                         </div>
-    
-                        <h3 style={{ fontSize: "20px", marginBottom: "8px" }}>{f.title}</h3>
+
+                        
+                        {!(isMobile && mobileTooltip === i) && (
+                            <>
+                                <h3
+                                    style={{
+                                        fontSize: isMobile ? "18px" : "20px",
+                                        marginBottom: "8px",
+                                    }}
+                                >
+                                    {f.title}
+                                </h3>
+
+                                <p
+                                    style={{
+                                        color: "#BBD7EE",
+                                        lineHeight: 1.6,
+                                    }}
+                                >
+                                    {f.desc}
+                                </p>
+                            </>
+                        )}
 
                         {/* Tooltip */}
-                        {(hoveredCard === i || mobileTooltip === i) && (
+                        {!isMobile && hoveredCard === i && (
                             <motion.div
                                 className="feature-tooltip"
                                 variants={tooltipVariants}
@@ -207,7 +231,7 @@ function Features() {
                                 </p>
                             </motion.div>
                         )}
-                        <p style={{ color: "#BBD7EE", lineHeight: 1.6 }}>{f.desc}</p>
+
                     </motion.div>
                 ))}
             </div>
